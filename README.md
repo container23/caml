@@ -7,11 +7,11 @@ Below is a basic overview of the project structure:
 
 ```
 ├── env.sample -> sample .env file
-├── aml-list.js -> source AML SDN list 
+├── data-sources -> sources AML SDN list 
 ├── app.js      -> main entrypoint for app
-├── commands.js -> slash command payloads + helpers
-├── utils.js    -> utility functions and enums
-├── verifier.hs -> helpers functions for verifications checks
+├── server -> server handlers and middlewares
+├── utils    -> utility functions and enums
+├── services -> core services for business logic
 ├── package.json
 ├── README.md
 └── .gitignore

@@ -1,7 +1,7 @@
 import {handleInteractions} from './handlers/index.js';
 
 export const setupRoutes = (app) => {
-    app.get('/', (_, res)  =>{
+    app.get('/', (_, res) => {
         res.send('Hello Bot :)')
     });
     

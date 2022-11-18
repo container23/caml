@@ -47,6 +47,9 @@ export const installGuildCommand = async (appId, guildId, command) => {
  * COMMANDS DEFINITIONS
  */
 
+export const MIN_INPUT_LENGTH = 2;
+export const MAX_INPUT_LENGTH = 80;
+
 // Simple test "health check" command
 export const TEST_COMMAND = {
   name: 'test',
@@ -63,8 +66,8 @@ export const SIMPLE_CHECK_COMMAND = {
       type: 3,
       name: 'value',
       description: 'Enter value to check',
-      min_length: 2,
-      max_length: 80,
+      min_length: MIN_INPUT_LENGTH,
+      max_length: MAX_INPUT_LENGTH,
       required: true
     },
   ],
@@ -79,8 +82,8 @@ export const VERBOSE_CHECK_COMMAND = {
       type: 3,
       name: 'value',
       description: 'Enter value to check',
-      min_length: 2,
-      max_length: 80,
+      min_length: MIN_INPUT_LENGTH,
+      max_length: MAX_INPUT_LENGTH,
       required: true
     },
   ],
