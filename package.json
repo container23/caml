@@ -7,18 +7,18 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "author": "Yeramin, Bogdan",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.20.1",
     "discord-interactions": "^3.2.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "node-fetch": "^3.2.3"
   },
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.19.6",
     "jest": "^29.3.1",
     "nodemon": "^2.0.15"
   }

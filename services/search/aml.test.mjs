@@ -1,19 +1,48 @@
-import { searchAMLFile } from './aml';
+import { 
+    searchAMLFile, 
+    AML_STATUS_MESSAGES, 
+    AML_STATUS_BANNED, 
+    AML_STATUS_SAFE 
+} from './aml';
 import path from 'path';
+import {fileURLToPath} from 'url';
 
-const TEST_FILE_PATH = path.join(__dirname, '../../data-sources/testlist.txt');
+const rootPath = path.dirname(fileURLToPath(import.meta.url));
+const TEST_FILE_PATH = path.join(rootPath, '../../data-sources/testlist.txt');
 
 describe('Test Searching on AML List', () => {
     const tests = [
-        // TODO: fix this test failure
+        {
+            input: "multiline",
+            matched: true,
+            totalMatches: 2,
+            matches: [
+                {
+                    blockStart: 1,
+                    blockEnd: 3,
+                    totalMatches: 2,
+                    matchedLines: [
+                        {
+                            lineNum: 1,
+                            lineText: "This is a multiline testing File"
+                        },
+                        {
+                            lineNum: 3,
+                            lineText: "with multiline matches in a block"
+                        }
+                    ]
+                }
+            ]
+        },
         {
             input: "Bogdanovicha",
             matched: true,
             totalMatches: 2,
-            lineMatches: [
+            matches: [
                 {
                     blockStart: 27,
                     blockEnd: 32,
+                    totalMatches: 1,
                     matchedLines: [
                         {
                             lineNum: 29,
@@ -24,6 +53,7 @@ describe('Test Searching on AML List', () => {
                 {
                     blockStart: 34,
                     blockEnd: 39,
+                    totalMatches: 1,
                     matchedLines: [
                         {
                             lineNum: 36,
@@ -67,6 +97,11 @@ describe('Test Searching on AML List', () => {
             input: "Passport T00043812",
             matched: true,
             totalMatches: 1
+        },
+        {
+            input: "SOMETEXTNOTONTHEFILE",
+            matched: false,
+            totalMatches: 0
         }
     ];
 
@@ -76,8 +111,10 @@ describe('Test Searching on AML List', () => {
             expect(re.foundMatch).toBe(!!t.matched);
             expect(re.sourceUpdatedAt).toBe('11/14/2022');
             expect(re.totalMatches).toBe(t.totalMatches || 0);
-            if (t.lineMatches) {
-                expect(re.lineMatches).toEqual(t.lineMatches);
+            expect(re.status).toBe(t.matched ? AML_STATUS_BANNED : AML_STATUS_SAFE)
+            expect(re.statusMsg).toBe(AML_STATUS_MESSAGES[re.status]);
+            if (t.matches) {
+                expect(re.matches).toEqual(t.matches);
             }
         })
     }
