@@ -50,8 +50,9 @@ export const handleInteractions = async (req, res) => {
 }
 
 // Handle "test" guild command
-const handleTestCommand = (_, res) => {
+const handleTestCommand = (req, res) => {
     // Send a message into the channel where command was triggered from
+    const userId = req.body.member.user.id;
     return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
