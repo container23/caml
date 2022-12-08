@@ -1,0 +1,9 @@
+{
+    "editor.defaultFormatter": "ms-vscode.vscode-typescript-tslint-plugin",
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "prettier.singleQuote": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}
