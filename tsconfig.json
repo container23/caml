@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+    "lib": ["es2022"],
+    "module": "CommonJS",
+    "target": "es2022",
+    "rootDir": "src",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
+  },
+    "exclude": ["node_modules", "**/*.test.ts", "**/test", "**/*/__mocks__"]
+  }

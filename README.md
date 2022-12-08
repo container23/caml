@@ -8,10 +8,10 @@ Below is a basic overview of the project structure:
 ```
 ├── env.sample -> sample .env file
 ├── data-sources -> sources AML SDN list 
-├── app.js      -> main entrypoint for app
-├── server -> server handlers and middlewares
-├── utils    -> utility functions and enums
-├── services -> core services for business logic
+├── src/app.ts      -> main entrypoint for app
+├── src/server -> server handlers and middlewares
+├── src/utils    -> utility functions and enums
+├── src/services -> core services for business logic
 ├── package.json
 ├── README.md
 └── .gitignore
@@ -25,7 +25,7 @@ Before you start, you'll need to [create a Discord app](https://discord.com/deve
 
 First clone the project:
 ```
-git clone https://github.com/ysfdev/discord-bot-poc.git
+git clone https://github.com/container23/kycaml-bot.git
 ```
 
 Then navigate to its directory and install dependencies:
@@ -46,13 +46,28 @@ Fetching credentials is covered in detail in the [getting started guide](https:/
 After your credentials are added, go ahead and run the app:
 
 ```
-node app.js
+make start
+```
+or use Docker
+
+#### Docker 
+
+**Build Docker Image**
+
+```
+make docker-image
+```
+
+**Run Docker Image**
+
+```
+make docker-run
 ```
 
 ### Run tests
 
 ```
-npm test
+make test
 ```
 
 > ⚙️ A package [like `nodemon`](https://github.com/remy/nodemon), which watches for local changes and restarts your app, may be helpful while locally developing.

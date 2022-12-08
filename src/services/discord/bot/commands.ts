@@ -1,46 +1,45 @@
-import { discordRequest } from '../../discord/index.js';
+import { discordRequest } from '../index';
+import { logger } from '../../../utils/logger';
 
-export async function hasGuildCommands(appId, guildId, commands) {
+export const verifyGuildCommands = async (appId: string, guildId: string, commands: Command[]) => {
   if (guildId === '' || appId === '') return;
+  logger.info(`Performing guild commands verifications...`);
+  commands.forEach((c) => verifyGuildCommand(appId, guildId, c));
+};
 
-  commands.forEach((c) => hasGuildCommand(appId, guildId, c));
-}
-
-// Checks for a command
-async function hasGuildCommand(appId, guildId, command) {
+// Verify and install a command if its not already registered on the guild server
+const verifyGuildCommand = async (appId: string, guildId: string, command: Command) => {
   // API endpoint to get and post guild commands
   const endpoint = `applications/${appId}/guilds/${guildId}/commands`;
 
   try {
-    const res = await discordRequest(endpoint, { method: 'GET' });
-    const data = await res.json();
-
+    const data = (await discordRequest(endpoint)) as Command[];
     if (data) {
-      const installedNames = data.map((c) => c['name']);
+      const installedNames = data.map((c: Command) => c.name);
       // This is just matching on the name, so it's not good for updates
-      if (!installedNames.includes(command['name'])) {
-        console.log(`Installing "${command['name']}"`);
+      if (!installedNames.includes(command.name)) {
+        logger.info(`Installing "${command.name}"`);
         installGuildCommand(appId, guildId, command);
       } else {
-        console.log(`"${command['name']}" command already installed`);
+        logger.info(`"${command.name}" command already installed`);
       }
     }
   } catch (err) {
-    console.error(err);
+    logger.error({ msg: `error setting up command "${command.name}":`, error: err });
   }
-}
+};
 
-// Installs a command
-export const installGuildCommand = async (appId, guildId, command) => {
+// Installs/registers a command to the guild server
+export const installGuildCommand = async (appId: string, guildId: string, command: Command) => {
   // API endpoint to get and post guild commands
   const endpoint = `applications/${appId}/guilds/${guildId}/commands`;
   // install command
   try {
-    await discordRequest(endpoint, { method: 'POST', body: command });
-  } catch (err) {
-    console.error(err);
+    await discordRequest(endpoint, { method: 'post', data: command });
+  } catch (err: any) {
+    logger.error({ msg: `discord request error: ${err.message}`, error: err });
   }
-}
+};
 
 
 /**
@@ -51,14 +50,14 @@ export const MIN_INPUT_LENGTH = 2;
 export const MAX_INPUT_LENGTH = 80;
 
 // Simple test "health check" command
-export const TEST_COMMAND = {
+export const TEST_COMMAND: Command = {
   name: 'test',
   description: 'Basic health check command',
   type: 1,
 };
 
 // Define requirements for Check command
-export const SIMPLE_CHECK_COMMAND = {
+export const SIMPLE_CHECK_COMMAND: Command = {
   name: 'check',
   description: 'Simple AML verification check',
   options: [
@@ -74,7 +73,7 @@ export const SIMPLE_CHECK_COMMAND = {
   type: 1,
 };
 
-export const VERBOSE_CHECK_COMMAND = {
+export const VERBOSE_CHECK_COMMAND: Command = {
   name: 'checkv',
   description: 'Verbose AML verification check, includes additional details of result',
   options: [
@@ -92,7 +91,7 @@ export const VERBOSE_CHECK_COMMAND = {
 
 // Init commands
 // Check if guild commands from commands.js are installed (if not, install them)
-export const initCommands = async (appId, guildId) => hasGuildCommands(appId, guildId, [
+export const initCommands = async (appId: string, guildId: string) => verifyGuildCommands(appId, guildId, [
   TEST_COMMAND,
   SIMPLE_CHECK_COMMAND,
   VERBOSE_CHECK_COMMAND

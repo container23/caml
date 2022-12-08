@@ -1,11 +1,12 @@
 import 'dotenv/config';
 import fetch from 'node-fetch';
 import { verifyKey } from 'discord-interactions';
+import { Request, Response } from '../../api/utils/index';
 
 const BASE_API_URL = 'https://discord.com/api/v10/';
 
-export const verifyDiscordRequest = (clientKey) => {
-  return function (req, res, buf) {
+export const verifyDiscordRequest = (clientKey: string) => {
+  return (req: Request, res: Response, buf: Buffer) => {
     const signature = req.get('X-Signature-Ed25519');
     const timestamp = req.get('X-Signature-Timestamp');
 
@@ -17,23 +18,24 @@ export const verifyDiscordRequest = (clientKey) => {
   };
 }
 
-export const discordRequest = async (endpoint, options) => {
-  const url = BASE_API_URL + endpoint;
-  if (options.body) options.body = JSON.stringify(options.body);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const discordRequest = async (
+  endpoint: string,
+  options: any = {}
+) => {
+  if (options.data) { options.data = JSON.stringify(options.data)}
+  const url = BASE_API_URL + endpoint
   const res = await fetch(url, {
     headers: {
       Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
       'Content-Type': 'application/json; charset=UTF-8',
       'User-Agent': 'AMLKYCBot (https://github.com/ysfdev2/amlkyc-bot, 1.0.0)',
     },
-    ...options
+    ...options,
   });
-  // throw API errors
   if (!res.ok) {
-    const data = await res.json();
-    console.log(res.status);
-    throw new Error(JSON.stringify(data));
+    throw new Error(JSON.stringify(await res.json()));
   }
   // return original response
-  return res;
-}
+  return res.json();
+};
