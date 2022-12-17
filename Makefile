@@ -58,12 +58,17 @@ release: clean
 	@echo "Cleaning dev dependencies..."
 	@npm prune --omit=dev
 
+refresh-aml-list: 
+	@chmod +x ./scripts/refresh-aml-list.sh
+	@bash ./scripts/refresh-aml-list.sh
+
 .PHONY: clean \
 		docker-run-api \
 		test \
 		start \
 		start-dev \
 		test-coverage \
+		refresh-aml-list \
 		release \
 		lint \
 		lint-fix \
