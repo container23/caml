@@ -122,3 +122,15 @@ To verify app is working into any channel in the auhorized Discord server. You s
 - `/test` Performs a simple hello message
 - `/check` Runs a simple AML check verificaton from a given input string
 - `/checkv` Runs same verification as `/check` but returns additional details
+
+## AML List Checks
+
+### Data Refresh
+
+By default the AML list is automatically updated on our live server instance every 24 hours, from the U.S Treasury Department source file [sdnlist.txt](https://www.treasury.gov/ofac/downloads/sdnlist.txt).
+
+The AML [refresh script](./scripts/refresh-aml-list.sh) can also be manually trigger by running below command on your envionment.
+
+```
+make refresh-aml-list
+```

@@ -10,7 +10,7 @@ import {
   LineMatch,
 } from './types';
 
-export const AML_FILE_PATH = path.join(__dirname, '../../data-sources/sdnlist.txt');
+export const AML_LIST_FILEPATH = process.env.AML_LIST_FILEPATH || path.join(__dirname, '../../data-sources/sdnlist.txt');
 
 export const AML_STATUS_MESSAGES = {
   [AML_STATUS.SAFE]: '✅ (**SAFE**)',
@@ -33,12 +33,12 @@ const buildReadlineStream = async (filepath: string) => {
 /**
  * Search if a {inputTxt} match is found in the given AML filepath
  * @param {String} searchTxt
- * @param {String} filepath Optional path to AML source list. Default to local AML_FILE_PATH
+ * @param {String} filepath Optional path to AML source list. Default to local AML_LIST_FILEPATH
  * @returns matches result object
  */
 export const searchAMLFile = async (
   inputTxt: string,
-  filepath = AML_FILE_PATH
+  filepath = AML_LIST_FILEPATH
 ): Promise<AMLSearchResponse> => {
   const matches: AMLSearchMatch[] = [];
   let currentBlockMatches: LineMatch[] = [],
