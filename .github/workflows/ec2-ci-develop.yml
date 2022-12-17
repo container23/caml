@@ -41,4 +41,6 @@ jobs:
           script: |
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            cd ${{ github.repository }} && git checkout develop && git pull && make release
+            cd ${{ github.repository }} && git checkout develop && git pull 
+            make docker-image
+            make docker-run
