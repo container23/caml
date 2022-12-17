@@ -49,8 +49,9 @@ release: clean
 	@echo "Building release: ${COMMIT_HASH}"
 	@echo "Installing dependencies"
 	@npm install
-	@echo "Linting code..."
-	@npm run lint
+	# TODO: unable to run on server
+	# @echo "Linting code..."
+	# @npm run lint
 	@echo "Running unit tests..."
 	@npm run test
 	@echo "Building app..."
