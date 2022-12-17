@@ -3,7 +3,7 @@ import { logger } from '../../../utils/logger';
 
 export const verifyGuildCommands = async (appId: string, guildId: string, commands: Command[]) => {
   if (guildId === '' || appId === '') return;
-  logger.info(`Performing guild commands verifications...`);
+  logger.info('Performing guild commands verifications...');
   commands.forEach((c) => verifyGuildCommand(appId, guildId, c));
 };
 
