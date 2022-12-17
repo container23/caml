@@ -2,8 +2,8 @@ name: Push to EC2 (ec2-ci-develop.yml)
 run-name: ${{ github.actor }} is pushing to EC2 from ${{ github.repository }}
 on:
   push:
-    branches:
-    - develop
+    # branches:
+    # # - develop
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -12,14 +12,16 @@ jobs:
         node-version: [18.x]
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm i
     # - run: npm run build
-    - run: npm run test
+    # - run: npm run test
+    - run: make build
+    - run: make test
   deploy:
     needs: build-and-test
     runs-on: ubuntu-latest
@@ -39,4 +41,4 @@ jobs:
           script: |
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            cd ${{ github.repository }} && git checkout develop && git pull && pm2 restart app
+            cd ${{ github.repository }} && git checkout develop && git pull && make release
