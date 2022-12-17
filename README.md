@@ -127,7 +127,7 @@ To verify app is working into any channel in the auhorized Discord server. You s
 
 ### Data Refresh
 
-By default the AML list is automatically updated on our live server instance every 24 hours, from the U.S Treasury Department source file [sdnlist.txt](https://www.treasury.gov/ofac/downloads/sdnlist.txt).
+By default the AML list is automatically updated on our live server instance every 24 hours, from U.S Department Of The Treasury source file [sdnlist.txt](https://www.treasury.gov/ofac/downloads/sdnlist.txt). The downloaded `sndlist.txt` SHA-256 checksum is also verified with the OFAC [hash values list](https://home.treasury.gov/policy-issues/financial-sanctions/specially-designated-nationals-list-sdn-list/hash-values-for-ofac-sanctions-list-files).
 
 The AML [refresh script](./scripts/refresh-aml-list.sh) can also be manually trigger by running below command on your envionment.
 
