@@ -50,7 +50,7 @@ docker-run:
 
 docker-run-api:
 	@echo "Starting container..."
-	@docker run --rm -d --name=kycaml-service --env-file=./.env -p 8080:8080 -v $(AML_DATA_SOURCES_PATH):/usr/src/$(AML_DATA_SOURCES_PATH) kycaml-service:latest
+	@docker run --rm -d --name=kycaml-service --env-file=./.env -p 8080:8080 -v ~/$(AML_DATA_SOURCES_PATH):/usr/src/$(AML_DATA_SOURCES_PATH) kycaml-service:latest
 
 release: clean
 	@echo "Building release: ${COMMIT_HASH}"
