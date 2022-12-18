@@ -10,6 +10,9 @@ COMMIT_HASH ?= $(shell git rev-parse HEAD 2>/dev/null)
 BUILD_TIME ?= $(shell date +%FT%T%z)
 PWD ?= $(pwd)
 
+# AML data source from auto refresh directory
+AML_DATA_SOURCES_PATH=amlkyc-data-sources
+
 build: clean
 	@npm run build
 
@@ -44,6 +47,10 @@ docker-image: clean
 docker-run:
 	@echo "Starting container..."
 	@docker run --rm --name=kycaml-service --env-file=./.env -p 8080:8080 kycaml-service:latest
+
+docker-run-api:
+	@echo "Starting container..."
+	@docker run --rm -d --name=kycaml-service --env-file=./.env -p 8080:8080 -v $(AML_DATA_SOURCES_PATH):/usr/src/$(AML_DATA_SOURCES_PATH) kycaml-service:latest
 
 release: clean
 	@echo "Building release: ${COMMIT_HASH}"
