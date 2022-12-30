@@ -1,9 +1,13 @@
 import 'dotenv/config';
-import fetch from 'node-fetch';
 import { verifyKey } from 'discord-interactions';
 import { Request, Response } from '../../api/utils/index';
+import { REST, Routes } from 'discord.js';
+import { logger } from '../../utils/logger';
+import { SIMPLE_CHECK_COMMAND, TEST_COMMAND, VERBOSE_CHECK_COMMAND } from './commands';
 
-const BASE_API_URL = 'https://discord.com/api/v10/';
+const BASE_API_VERSION = '10';
+const ACCESS_TOKEN = process.env.DISCORD_TOKEN || '';
+let restInstance: REST;
 
 export const verifyDiscordRequest = (clientKey: string) => {
   return (req: Request, res: Response, buf: Buffer) => {
@@ -16,26 +20,37 @@ export const verifyDiscordRequest = (clientKey: string) => {
       throw new Error('Bad request signature');
     }
   };
+};
+
+// Init commands
+// Check if guild commands from commands.js are installed (if not, install them)
+export const initCommands = async (appId: string) => registerCommands(appId, [
+  TEST_COMMAND,
+  SIMPLE_CHECK_COMMAND,
+  VERBOSE_CHECK_COMMAND
+]);
+
+export const newRestRequest = (version = BASE_API_VERSION): REST => {
+  if (restInstance) {
+    return restInstance;
+  }
+  restInstance = new REST({ version });
+  restInstance.setToken(ACCESS_TOKEN);
+  return restInstance
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const discordRequest = async (
-  endpoint: string,
-  options: any = {}
+export const registerCommands = async (
+  clientId: string,
+  commands: Command[]
 ) => {
-  if (options.data) { options.data = JSON.stringify(options.data)}
-  const url = BASE_API_URL + endpoint
-  const res = await fetch(url, {
-    headers: {
-      Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
-      'Content-Type': 'application/json; charset=UTF-8',
-      'User-Agent': 'AMLKYCBot (https://github.com/ysfdev2/amlkyc-bot, 1.0.0)',
-    },
-    ...options,
-  });
-  if (!res.ok) {
-    throw new Error(JSON.stringify(await res.json()));
+  try {
+    logger.info('Started refreshing application (/) commands.');
+    await newRestRequest().put(Routes.applicationCommands(clientId), {
+      body: commands,
+    });
+    logger.info('Successfully reloaded application (/) commands.');
+  } catch (error) {
+    logger.error(error);
+    return error;
   }
-  // return original response
-  return res.json();
 };
