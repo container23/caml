@@ -3,6 +3,7 @@ run-name: ${{ github.actor }} is pushing to EC2 from ${{ github.repository }}
 on:
   push:
     branches:
+    - main
     - develop
 jobs:
   build-and-test:
@@ -39,4 +40,8 @@ jobs:
           script: |
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            cd ${{ github.repository }} && git checkout develop && git pull && pm2 restart app
+            cd ${{ github.repository }} && \ 
+            git checkout ${{ github.ref }} && \
+            git pull && \ 
+            make release && \
+            pm2 restart --name=kycamlbot dist/app.js -i 2
