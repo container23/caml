@@ -41,7 +41,7 @@ jobs:
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             cd ${{ github.repository }} && \ 
-            git checkout ${{ github.ref }} && \
+            git checkout ${{ github.ref_name }} && \
             git pull && \ 
             make release && \
             pm2 restart --name=kycamlbot dist/app.js -i 2
