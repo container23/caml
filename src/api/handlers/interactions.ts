@@ -8,7 +8,7 @@ import {
   TEST_COMMAND,
   SIMPLE_CHECK_COMMAND,
   VERBOSE_CHECK_COMMAND
-} from '../../services/discord/bot/commands';
+} from '../../services/discord/commands';
 import { getRandomEmoji } from '../../utils/index';
 import { searchAMLFile } from '../../services/search/aml';
 import { Handler } from '../utils/index'
