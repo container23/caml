@@ -3,8 +3,8 @@ run-name: ${{ github.actor }} is pushing to EC2 from ${{ github.repository }}
 on:
   push:
     branches:
-    - main
-    - develop
+    # - main
+    # - develop
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
