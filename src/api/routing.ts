@@ -7,7 +7,23 @@ export const setupRoutes = (app: Server) => {
   });
 
   /**
-   * Interactions endpoint URL where Discord will send HTTP requests
-   */
-  app.post('/interactions', handleInteractions);
-};
+     * Interactions endpoint URL where Discord will send HTTP requests
+     */
+  app.post('/interactions', handleInteractions); 
+
+  app.get('/health', async (_ , res) => {
+    const healthcheck = {
+        uptime: process.uptime(),
+        message: 'OK',
+        timestamp: Date.now()
+    };
+
+    try {
+        res.send(healthcheck);
+    } catch (error: any) {
+        healthcheck.message = error;
+        res.status(503).send();
+    }
+  });
+    
+}

@@ -44,3 +44,9 @@ export const VERBOSE_CHECK_COMMAND: Command = {
   ],
   type: 1,
 };
+
+export const HEALTH_COMMAND: Command = {
+  name: 'health',
+  description: 'Health / Heatbeat check',
+  type: 1,
+};
