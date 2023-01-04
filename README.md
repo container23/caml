@@ -2,6 +2,20 @@
 
 A simple Discord Bot, which allows performing verifications such as AML, KYC, etc.
 
+## How to install the Bot on your Discord Server 
+
+You can integrate and test this bot on your discord Guild server by following below instructions.
+
+1) Open the Bot [authorization  link.](https://discord.com/api/oauth2/authorize?client_id=1041133202242285699&permissions=2147485696&scope=applications.commands%20bot)
+
+2) Select the Server where you will like to enable the Bot. 
+
+3) Select and Confirm the Bot permissions to *Send Messages* and *Use Application Commands*.
+
+4) Click Authorize. If successful, you should receive an `Authorized` message.
+
+5) Navigate to the Discord server where the bot was enabled. Type: `/check hello`, to see a sample verification result from **kycaml-bot**.
+
 ## Project structure
 Below is a basic overview of the project structure:
 
