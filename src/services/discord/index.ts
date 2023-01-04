@@ -24,11 +24,15 @@ export const verifyDiscordRequest = (clientKey: string) => {
 
 // Init commands
 // Check if guild commands from commands.js are installed (if not, install them)
-export const initCommands = async (appId: string) => registerCommands(appId, [
-  TEST_COMMAND,
-  SIMPLE_CHECK_COMMAND,
-  VERBOSE_CHECK_COMMAND
-]);
+export const initCommands = async (appId: string, guildId?: string) => registerCommands(
+  appId,
+  [
+    TEST_COMMAND,
+    SIMPLE_CHECK_COMMAND,
+    VERBOSE_CHECK_COMMAND
+  ],
+  guildId
+);
 
 export const newRestRequest = (version = BASE_API_VERSION): REST => {
   if (restInstance) {
@@ -36,18 +40,29 @@ export const newRestRequest = (version = BASE_API_VERSION): REST => {
   }
   restInstance = new REST({ version });
   restInstance.setToken(ACCESS_TOKEN);
-  return restInstance
+  return restInstance;
 }
 
 export const registerCommands = async (
-  clientId: string,
-  commands: Command[]
+  appId: string,
+  commands: Command[],
+  guildId?: string
 ) => {
   try {
-    logger.info('Started refreshing application (/) commands.');
-    await newRestRequest().put(Routes.applicationCommands(clientId), {
-      body: commands,
-    });
+    const req = newRestRequest();
+    if (!!guildId) {
+      logger.info(`Started refreshing application (/) commands on server/guild: ${guildId}`);
+      // only register commands to given guild server
+      await req.put(Routes.applicationGuildCommands(appId, guildId), {
+        body: commands
+      });
+    } else {
+      logger.info('Started refreshing application (/) commands.');
+      // register on application level
+      await req.put(Routes.applicationCommands(appId), {
+        body: commands,
+      });
+    }
     logger.info('Successfully reloaded application (/) commands.');
   } catch (error) {
     logger.error(error);

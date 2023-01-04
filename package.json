@@ -7,7 +7,7 @@
     "build": "./node_modules/.bin/tsc",
     "start": "node ./dist/app.js",
     "start-server": "npm run build && npm run start",
-    "dev": "tsc-watch --onSuccess \"node ./dist/app.js\"",
+    "dev": "NODE_ENV=dev; tsc-watch --onSuccess \"node ./dist/app.js\"",
     "test": "NODE_ENV=test; npx jest --verbose --passWithNoTests",
     "testw": "NODE_ENV=test; npx jest --watch --passWithNoTests",
     "testc": "NODE_ENV=test; npx jest --coverage --verbose",
