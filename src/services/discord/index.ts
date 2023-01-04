@@ -50,7 +50,7 @@ export const registerCommands = async (
 ) => {
   try {
     const req = newRestRequest();
-    if (!!guildId) {
+    if (guildId) {
       logger.info(`Started refreshing application (/) commands on server/guild: ${guildId}`);
       // only register commands to given guild server
       await req.put(Routes.applicationGuildCommands(appId, guildId), {
