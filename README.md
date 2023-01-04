@@ -87,13 +87,17 @@ make test
 
 For local development, you can send direct HTTP requests to verify API endpoints.
 
+First start the server: `make start`
+
 #### POST /interactions 
 
-API to process interactions commands 
+API to process interactions commands. 
 
 **URL: POST *http://localhost:8080/interactions***
 
 **Sample JSON Request Body**
+
+Sample request for verbose AML check (`checkv`) command.
 
 ```json
 {
