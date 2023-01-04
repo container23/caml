@@ -9,5 +9,5 @@ server.listen(PORT, () => {
   logger.info(`Started "${ENVIRONMENT}" server on http://localhost:${PORT}`);
   // On development, only register the commands to specific guild 
   const guildId = ENVIRONMENT === 'production' ? '' : process.env.GUILD_ID ;
-  // initCommands(process.env.APP_ID || '', guildId);
+  initCommands(process.env.APP_ID || '', guildId);
 });
