@@ -83,8 +83,58 @@ make docker-run
 ```
 make test
 ```
+### Local testing APIs
 
-> ⚙️ A package [like `nodemon`](https://github.com/remy/nodemon), which watches for local changes and restarts your app, may be helpful while locally developing.
+For local development, you can send direct HTTP requests to verify API endpoints.
+
+#### POST /interactions 
+
+API to process interactions commands 
+
+**URL: POST *http://localhost:8080/interactions***
+
+**Sample JSON Request Body**
+
+```json
+{
+    "type": 2,
+    "token": "A_UNIQUE_TOKEN",
+    "member": {
+        "user": {
+            "id": "53908232506183680",
+            "username": "Mason",
+            "avatar": "a_d5efa99b3eeaa7dd43acca82f5692432",
+            "discriminator": "1337",
+            "public_flags": 131141
+        },
+        "roles": ["539082325061836999"],
+        "premium_since": null,
+        "permissions": "2147483647",
+        "pending": false,
+        "nick": null,
+        "mute": false,
+        "joined_at": "2017-03-13T19:19:14.040000+00:00",
+        "is_pending": false,
+        "deaf": false
+    },
+    "id": "786008729715212338",
+    "guild_id": "290926798626357999",
+    "app_permissions": "442368",
+    "guild_locale": "en-US",
+    "locale": "en-US",
+    "data": {
+        "options": [{
+            "type": 3,
+            "name": "checkv",
+            "value": "XBT 3Q5dGfLKkWqWSwYtbMUyc8xGjN5LrRviK4"
+        }],
+        "type": 1,
+        "name": "checkv",
+        "id": "771825006014889984"
+    },
+    "channel_id": "645027906669510667"
+}
+```
 
 ### Set up interactivity
 

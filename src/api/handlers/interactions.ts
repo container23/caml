@@ -105,7 +105,7 @@ const handleVerificationChecksCmds: Handler = async (req, res) => {
   });
 };
 
-const buildVerboseDetailsOutput = (result: AMLSearchResponse, maxOutputLines = 15) => {
+export const buildVerboseDetailsOutput = (result: AMLSearchResponse, maxOutputLines = 15) => {
   let output = `\n **Source List Updated Date**: ${result.sourceUpdatedAt}`;
   output += `\n **Found ${result.totalMatches} match${result.totalMatches > 1  ? 'es' : ''}.**`;
   if (result.totalMatches > 0) {
