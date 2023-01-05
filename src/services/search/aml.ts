@@ -92,6 +92,7 @@ export const searchAMLFile = async (
   await once(rl, 'close');
   processLine(); // process last line
   return buildResultsOutput({
+    searchTerm: inputTxt,
     totalMatches,
     matches,
     // the last line of the SDN source files represents updated date
@@ -100,10 +101,12 @@ export const searchAMLFile = async (
 };
 
 const buildResultsOutput = ({
+  searchTerm,
   matches = [],
   sourceUpdatedAt,
   totalMatches = 0,
 }: {
+  searchTerm: string,
   matches?: AMLSearchMatch[];
   sourceUpdatedAt: string;
   totalMatches?: number;
@@ -112,6 +115,7 @@ const buildResultsOutput = ({
   const status = foundMatch ? AML_STATUS.BANNED : AML_STATUS.SAFE;
   const statusMsg = AML_STATUS_MESSAGES[status];
   return {
+    searchTerm,
     status,
     sourceUpdatedAt,
     statusMsg,

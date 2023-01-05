@@ -16,6 +16,7 @@ export type AMLSearchMatch = {
 };
 
 export type AMLSearchResponse = {
+  searchTerm: string;
   status: AML_STATUS;
   statusMsg: string;
   foundMatch: boolean;

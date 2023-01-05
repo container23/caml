@@ -1,5 +1,7 @@
 import { Express, Request, Response, NextFunction } from 'express';
 
+export const API_BASE_URL = process.env.API_BASE_URL || `localhost:${process.env.PORT || 8080}`;
+
 export type Handler = (
   req: Request,
   res: Response,

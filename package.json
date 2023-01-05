@@ -4,16 +4,17 @@
   "description": "A Discord bot for performing users verifications (AML, KYC) checks",
   "main": "app.js",
   "scripts": {
-    "build": "./node_modules/.bin/tsc",
+    "build": "./node_modules/.bin/tsc && npm run cp-views",
     "start": "node ./dist/app.js",
     "start-server": "npm run build && npm run start",
-    "dev": "NODE_ENV=dev; tsc-watch --onSuccess \"node ./dist/app.js\"",
+    "dev": "NODE_ENV=dev; npm run cp-views && tsc-watch --onSuccess \"node ./dist/app.js\"",
     "test": "NODE_ENV=test; npx jest --verbose --passWithNoTests",
     "testw": "NODE_ENV=test; npx jest --watch --passWithNoTests",
     "testc": "NODE_ENV=test; npx jest --coverage --verbose",
     "lint": "npx eslint . --ext .ts",
     "lint-and-fix": "npx eslint . --ext .ts --fix",
-    "clean": "rm -rf dist coverage &>/dev/null"
+    "clean": "rm -rf dist coverage &>/dev/null",
+    "cp-views": "cp -r src/views dist"
   },
   "author": "Yeramin, Bogdan",
   "license": "MIT",
@@ -22,6 +23,7 @@
     "discord-interactions": "^3.2.0",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.0",
+    "ejs": "^3.1.8",
     "express": "^4.17.3",
     "node-fetch": "^2.6.7",
     "pino": "^8.7.0",

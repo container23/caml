@@ -20,10 +20,6 @@ export const setupMiddlewares = (app: Server) => {
   // logger
   app.use(requestLogger());
   // json parser
-  app.use((req, res, next) => {
-    console.log('ENVIRONMENT', process.env.NODE_ENV, process.env.PUBLIC_KEY);
-    next();
-  });
   app.use(json(buildJSONParserOpts()));
 };
 

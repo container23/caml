@@ -1,3 +1,4 @@
+import { handleAMLCheckResults } from './handlers/aml';
 import { handleInteractions } from './handlers/index';
 import { Server } from './utils/index';
 
@@ -10,4 +11,9 @@ export const setupRoutes = (app: Server) => {
    * Interactions endpoint URL where Discord will send HTTP requests
    */
   app.post('/interactions', handleInteractions);
+
+  /**
+   * AML Check Results 
+   */
+  app.get('/amlcheck/results', handleAMLCheckResults)
 };
