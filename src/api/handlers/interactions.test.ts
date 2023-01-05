@@ -1,6 +1,6 @@
 import { AML_STATUS_MESSAGES } from '../../services/search/aml';
 import { AMLSearchResponse, AML_STATUS } from '../../services/search/types';
-import { buildVerboseDetailsOutput } from './interactions';
+import { buildVerboseDetailsOutput, generateAmlResultsURL } from './interactions';
 
 describe('Interactions Handler Tests', () => {
   describe('buildVerboseDetailsOutput', () => {
@@ -22,6 +22,7 @@ describe('Interactions Handler Tests', () => {
         },
       ];
       const input: AMLSearchResponse = {
+        searchTerm: 'test',
         status: AML_STATUS.SAFE,
         statusMsg: AML_STATUS_MESSAGES[AML_STATUS.SAFE],
         foundMatch: true,
@@ -45,7 +46,8 @@ describe('Interactions Handler Tests', () => {
       expectedOutput += `\n \t ⚠ Matches on paragraph from line ${input.matches[0].blockStart} to ${input.matches[0].blockEnd}:`;
       expectedOutput += `\n \t \t - 1) **Line # ${matchedLines[0].lineNum}**: ${matchedLines[0].lineText}`;
       expectedOutput += `\n \t \t - 2) **Line # ${matchedLines[1].lineNum}**: ${matchedLines[1].lineText}`;
-
+      expectedOutput += `\n See full results [here](${generateAmlResultsURL(input.searchTerm)})`;
+     
       expect(result).toEqual(expectedOutput);
     });
   });

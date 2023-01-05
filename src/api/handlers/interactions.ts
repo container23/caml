@@ -11,7 +11,7 @@ import {
 } from '../../services/discord/commands';
 import { getRandomEmoji } from '../../utils/index';
 import { searchAMLFile } from '../../services/search/aml';
-import { Handler } from '../utils/index'
+import { Handler, API_BASE_URL } from '../utils/index'
 import { AMLSearchResponse } from '../../services/search/types';
 import { logger } from '../../utils/logger';
 
@@ -105,7 +105,7 @@ const handleVerificationChecksCmds: Handler = async (req, res) => {
   });
 };
 
-export const buildVerboseDetailsOutput = (result: AMLSearchResponse, maxOutputLines = 15) => {
+export const buildVerboseDetailsOutput = (result: AMLSearchResponse, maxOutputLines = 10) => {
   let output = `\n **Source List Updated Date**: ${result.sourceUpdatedAt}`;
   output += `\n **Found ${result.totalMatches} match${result.totalMatches > 1  ? 'es' : ''}.**`;
   if (result.totalMatches > 0) {
@@ -127,6 +127,13 @@ export const buildVerboseDetailsOutput = (result: AMLSearchResponse, maxOutputLi
         totalLinesAdded++;
       }
     }
+    output += `\n See full results [here](${generateAmlResultsURL(result.searchTerm)})`;
   }
   return output;
+}
+
+export const generateAmlResultsURL = (searchTerm: string) => {
+  // TODO: generate signed token
+  const queryParams = `search=${encodeURIComponent(searchTerm)}`;
+  return (`${API_BASE_URL}/amlcheck/results?${queryParams}`);
 }
