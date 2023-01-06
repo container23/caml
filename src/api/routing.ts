@@ -1,10 +1,13 @@
 import { handleAMLCheckResults } from './handlers/aml';
 import { handleInteractions } from './handlers/index';
-import { Server } from './utils/index';
+import { Server, DISCORD_BOT_AUTH_URL } from './utils/index';
 
 export const setupRoutes = (app: Server) => {
   app.get('/', (_, res) => {
-    res.send('Hello Bot :)');
+    const data = {
+      discordBotAuth: DISCORD_BOT_AUTH_URL,
+    };
+    res.render('home', data);
   });
 
   /**
