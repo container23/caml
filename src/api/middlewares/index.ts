@@ -1,7 +1,8 @@
-import { json, Express as Server, NextFunction } from 'express';
+import { json, Express as Server, NextFunction, static as ServeStatic } from 'express';
 import { verifyDiscordRequest } from '../../services/discord/index';
 import httpLogger from 'pino-http';
 import { logger } from '../../utils/logger';
+import path from 'path';
 
 const requestLogger = () => {
   const log = httpLogger({
@@ -17,6 +18,8 @@ const requestLogger = () => {
 };
 
 export const setupMiddlewares = (app: Server) => {
+  // static assets 
+  app.use('/assets', ServeStatic('dist/views/assets'));
   // logger
   app.use(requestLogger());
   // json parser

@@ -1,51 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AML Check Results</title>
-  </head>
+  <%- include('./header', {title: "AML Check Results"}) %>
   <body>
-    <h1>AML Check Results</h1>
-    <p><b>Search Term:</b> <b><%= data.searchTerm %></b></p>
-    <p><b>Found Match:</b> <%= data.foundMatch %></p>
-    <p><b>Status:</b> <%= data.status.toUpperCase() %></p>
-    <p>
-      <b>Source List:</b>
-      <a
-        href="https://www.treasury.gov/ofac/downloads/sdnlist.txt"
-        rel="noopener noreferrer"
-        target="_blank"
-        >sndlist.txt</a
-      >
-    </p>
-    <p><b>Source List Updated Date:</b> <%= data.sourceUpdatedAt %></p>
-    <% if (data.foundMatch && data.matches.length > 0) { %>
-    <hr />
-    <h2>Results Summary</h2>
-    <h3>Found <%= data.totalMatches %> matches</h3>
-    <ul>
-      <% data.matches.forEach((m) => { %>
-      <li>
+    <div class="container">
+      <div class="header">
+        <h1>AML Check Results</h1>
+        <div class="results-img-container">
+          <img class="results-img" src="/assets/authcheck-results.png" />
+        </div>
+      </div>
+      <div class="container results-container">
+        <h2>Summary</h2>
+        <hr />
+        <p><b>Search Term:</b> <%= data.searchTerm %></p>
+        <p><b>Found Match:</b> <%= data.foundMatch %></p>
+        <p><b>Status:</b> <%= data.status.toUpperCase() %></p>
         <p>
-          <span>⚠</span> Matches on paragraph from <%= m.blockStart %> line to
-          <%= m.blockEnd %> :
+          <b>Source List:</b>
+          <a
+            href="https://www.treasury.gov/ofac/downloads/sdnlist.txt"
+            rel="noopener noreferrer"
+            target="_blank"
+            >sndlist.txt</a
+          >
         </p>
-        <ol>
-          <% m.matchedLines.forEach((ml) => { %>
-          <li><b>Line # <%= ml.lineNum %></b>: <%= ml.lineText %></li>
+        <p><b>Source List Updated Date:</b> <%= data.sourceUpdatedAt %></p>
+        <% if (data.foundMatch && data.matches.length > 0) { %>
+      </div>
+      <div class="results-container">
+        <h2>Results Details</h2>
+        <hr />
+        <h3>Found <%= data.totalMatches %> matches</h3>
+        <ul class="results-list">
+          <% data.matches.forEach((m) => { %>
+          <li>
+            <p>
+              <span class="warning-icon">⚠</span> Matches on paragraph from line
+              <%= m.blockStart %> to <%= m.blockEnd %>:
+            </p>
+            <ol>
+              <% m.matchedLines.forEach((ml) => { %>
+              <li><b>Line # <%= ml.lineNum %></b>: <%= ml.lineText %></li>
+              <% }) %>
+            </ol>
+          </li>
           <% }) %>
-        </ol>
-      </li>
-      <% }) %>
-    </ul>
-    <% } %>
-    <hr />
-    <p>
-      <b>Disclaimer:</b>
-      <i>
-        PENDING.
-      </i>
-    </p>
+        </ul>
+        <% } %>
+      </div>
+      <%- include('./footer'); %>
+    </div>
   </body>
 </html>
