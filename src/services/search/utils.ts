@@ -13,7 +13,7 @@ export const buildSearchRegEx = (searchTxt: string) => {
   return regEx;
 };
 
-const SANITIZED_STR_REGEXP = /[()?%!^~]/gm;
+const SANITIZED_STR_REGEXP = /[`<>()?%!^~$#^*]/gm;
 /**
  * Clean up special characters from str
  * @param str 

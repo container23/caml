@@ -91,7 +91,7 @@ const handleVerificationChecksCmds: Handler = async (req, res) => {
   }
 
   const result = await searchAMLFile(inputValue);
-  let resultMsg = `Verification result for **${inputValue}**: ${result.statusMsg}`;
+  let resultMsg = `Verification result for **${result.searchTerm}**: ${result.statusMsg}`;
 
   if (includeExtraDetails) {
     resultMsg += buildVerboseDetailsOutput(result);
