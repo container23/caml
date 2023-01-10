@@ -4,8 +4,8 @@ describe('Search Utils', () => {
   describe('sanitizeStr', () => {
     const tests = [
       {
-        searchInput: 'test3!%?~',
-        searchOutput: 'test3',
+        searchInput: '<$testall!%?~$>`^',
+        searchOutput: 'testall',
       },
       {
         searchInput: 'Sufian al-Pasterar',
