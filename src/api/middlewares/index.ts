@@ -2,7 +2,6 @@ import { json, Express as Server, NextFunction, static as ServeStatic } from 'ex
 import { verifyDiscordRequest } from '../../services/discord/index';
 import httpLogger from 'pino-http';
 import { logger } from '../../utils/logger';
-import path from 'path';
 
 const requestLogger = () => {
   const log = httpLogger({

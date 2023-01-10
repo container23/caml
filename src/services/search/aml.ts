@@ -1,6 +1,5 @@
 // Helpers for search AML sources
-import fs from 'fs';
-import readline from 'readline';
+
 import { once } from 'node:events';
 import path from 'path';
 import {
@@ -9,25 +8,19 @@ import {
   AML_STATUS,
   LineMatch,
 } from './types';
+import {
+  buildReadlineStream,
+  buildSearchRegEx,
+  isValidDateStr,
+  sanitizeStr,
+} from './utils';
 
-export const AML_LIST_FILEPATH = process.env.AML_LIST_FILEPATH || path.join(__dirname, '../../data-sources/sdnlist.txt');
-
+export const AML_LIST_FILEPATH =
+  process.env.AML_LIST_FILEPATH ||
+  path.join(__dirname, '../../data-sources/sdnlist.txt');
 export const AML_STATUS_MESSAGES = {
   [AML_STATUS.SAFE]: '✅ (**SAFE**)',
   [AML_STATUS.BANNED]: '🚫 (**BANNED**)',
-};
-
-const buildSearchRegEx = (searchTxt: string) => {
-  const searchFlags = 'gmi'; // global, multiple, insenstive
-  const searchQuery = `\\b${searchTxt}\\b`; // search within boundary
-  const regEx = new RegExp(searchQuery, searchFlags);
-  return regEx;
-};
-
-const buildReadlineStream = async (filepath: string) => {
-  const inStream = fs.createReadStream(filepath);
-  const rl = readline.createInterface(inStream);
-  return rl;
 };
 
 /**
@@ -40,6 +33,9 @@ export const searchAMLFile = async (
   inputTxt: string,
   filepath = AML_LIST_FILEPATH
 ): Promise<AMLSearchResponse> => {
+  const searchTerm = sanitizeStr(inputTxt);
+  const searchRegExp = buildSearchRegEx(searchTerm);
+
   const matches: AMLSearchMatch[] = [];
   let currentBlockMatches: LineMatch[] = [],
     lineNum = 0,
@@ -68,10 +64,8 @@ export const searchAMLFile = async (
       // reset block fields
       blockStartIdx = lineNum + 1;
       currentBlockMatches = [];
-    }
-
-    // check if current line matches input text
-    if (line && line.search(searchRegEx) >= 0) {
+      // check if current line matches input text
+    } else if (sanitizeStr(line).search(searchRegExp) >= 0) {
       // add the matches to the current block
       currentBlockMatches.push({
         lineNum,
@@ -81,8 +75,6 @@ export const searchAMLFile = async (
   };
 
   const rl = await buildReadlineStream(filepath);
-  const searchRegEx = buildSearchRegEx(inputTxt);
-
   // process each line from file
   rl.on('line', (line) => {
     processLine(line);
@@ -91,22 +83,30 @@ export const searchAMLFile = async (
   // wait to read last line
   await once(rl, 'close');
   processLine(); // process last line
+  // the last line of the SDN source files represents updated date
+  const sourceUpdatedAt = isValidDateStr(lastProcessedLine)
+    ? lastProcessedLine
+    : '';
   return buildResultsOutput({
-    searchTerm: inputTxt,
+    searchTerm,
     totalMatches,
     matches,
-    // the last line of the SDN source files represents updated date
-    sourceUpdatedAt: lastProcessedLine,
+    sourceUpdatedAt,
   });
 };
 
+/**
+ * Builds the final results set from AML file search results
+ * @param param0 AML file results
+ * @returns AMLSearchResponse
+ */
 const buildResultsOutput = ({
   searchTerm,
   matches = [],
   sourceUpdatedAt,
   totalMatches = 0,
 }: {
-  searchTerm: string,
+  searchTerm: string;
   matches?: AMLSearchMatch[];
   sourceUpdatedAt: string;
   totalMatches?: number;
