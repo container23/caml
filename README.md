@@ -33,9 +33,19 @@ Below is a basic overview of the project structure:
 
 ## Running app locally
 
-Before you start, you'll need to [create a Discord app](https://discord.com/developers/applications) with the proper permissions:
-- `applications.commands`
-- `bot` (with Send Messages enabled)
+Before you start, you'll need to [create a Discord app](https://discord.com/developers/applications) with the proper permissions as described below.
+in OAuth2 section ensure autorization is set to:
+ * In-app autorization 
+ * both scopes are selected
+    - `applications.commands`
+    - `bot` 
+* text-permission section
+    - Send Messages
+    - Use slash commands
+
+Under Bot section 
+ * use (reset) the token for the env file
+ * ensure public bot & oath2 code grant are enabled
 
 First clone the project:
 ```
@@ -144,10 +154,10 @@ Sample request for verbose AML check (`checkv`) command.
 
 The project needs a public endpoint where Discord can send requests. To develop and test locally, you can use something like [`ngrok`](https://ngrok.com/) to tunnel HTTP traffic.
 
-Install ngrok if you haven't already, then start listening on port `3000`:
+Install ngrok if you haven't already, then start listening on port `8080`:
 
 ```
-ngrok http 3000
+ngrok http 8080
 ```
 
 You should see your connection open:
@@ -156,12 +166,13 @@ You should see your connection open:
 Tunnel Status                 online
 Version                       2.0/2.0
 Web Interface                 http://127.0.0.1:4040
-Forwarding                    http://1234-someurl.ngrok.io -> localhost:3000
-Forwarding                    https://1234-someurl.ngrok.io -> localhost:3000
+Forwarding                    https://1234-someurl.ngrok.io -> localhost:8080
 
 Connections                  ttl     opn     rt1     rt5     p50     p90
                               0       0       0.00    0.00    0.00    0.00
 ```
+
+To test the bot server is proxied throught ngrock, browse to `https://1234-someurl.ngrok.io` click `visit site` button, then you'll get an HTML page stating `Hello Bot :)`.
 
 Copy the forwarding address that starts with `https`, in this case `https://1234-someurl.ngrok.io`, then go to your [app's settings](https://discord.com/developers/applications).
 
@@ -178,7 +189,7 @@ In order to integrate the app into the server, you will need to grant permission
 3) On right menue, Click OAuth2, then URL Generator
 4) Select Scopes: `bot` and `applications.commands`
 5) Select Bot Permissions: `Send Messages` and `Use Slash Commands`
-6) Copy the Generated URL. Will look something like: `https://discord.com/api/oauth2/authorize?client_id=1041133202242285699&permissions=2147485696&scope=applications.commands%20bot`
+6) Copy the Generated URL. Will look something like: `https://discord.com/api/oauth2/authorize?client_id={{BOT APP ID}}&permissions=2147485696&scope=applications.commands%20bot`
 7) Open the URL in a new browser tab
 8) Follow the flow in the screen to Authorize the Bot into your desired Discord server
 9) Then you should success page
