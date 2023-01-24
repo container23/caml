@@ -1,5 +1,7 @@
 import { handleAMLCheckResults } from './handlers/aml';
 import { handleInteractions } from './handlers/index';
+import { handleCfg } from './handlers/cfg';
+import { getHeartbeat } from './handlers/health';
 import { Server, DISCORD_BOT_AUTH_URL } from './utils/index';
 
 export const setupRoutes = (app: Server) => {
@@ -19,4 +21,14 @@ export const setupRoutes = (app: Server) => {
    * AML Check Results 
    */
   app.get('/amlcheck/results', handleAMLCheckResults)
+
+  /**
+   * cfg
+   */
+  app.get('/cfg', handleCfg);
+
+  /**
+   * heartbeat 
+   */
+  app.get('/heartbeat', getHeartbeat);
 };

@@ -4,7 +4,7 @@
   "description": "A Discord bot for performing users verifications (AML, KYC) checks",
   "main": "app.js",
   "scripts": {
-    "build": "./node_modules/.bin/tsc && npm run cp-views",
+    "build": "./node_modules/.bin/tsc && npm run cp-views ",
     "start": "node ./dist/app.js",
     "start-server": "npm run build && npm run start",
     "dev": "NODE_ENV=dev; npm run cp-views && tsc-watch --onSuccess \"node ./dist/app.js\"",
