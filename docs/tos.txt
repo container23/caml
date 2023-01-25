@@ -1,0 +1,24 @@
+1. Introduction
+These terms of service ("Terms") govern your use of the Discord bot ("Bot") and the services it provides ("Services"). By using the Bot and its Services, you agree to be bound by these Terms. If you do not agree to these Terms, you may not use the Bot or its Services.
+
+2. Use of the Bot and Services
+The Bot is intended for use by individuals aged 13 years or older. If you are under the age of 13, you may not use the Bot or its Services.
+
+You may not use the Bot or its Services for any illegal or unauthorized purpose. You must also comply with all applicable laws and regulations in your jurisdiction when using the Bot or its Services.
+
+3. Disclaimer of Warranties
+The Bot and its Services are provided on an "as is" and "as available" basis. We make no representations or warranties of any kind, express or implied, as to the operation of the Bot or the Services, or the information, content, materials, or products included on the Bot.
+
+We do not warrant that the Bot or its Services will be uninterrupted or error-free. We also do not warrant that the Bot or its Services will be free from viruses or other harmful components.
+
+4. Limitation of Liability
+In no event shall we be liable for any damages of any kind, including without limitation, direct, indirect, incidental, punitive, or consequential damages, arising out of or in connection with the use of the Bot or its Services.
+
+5. Changes to the Terms
+We reserve the right to make changes to these Terms at any time. Your continued use of the Bot and its Services following any changes to these Terms constitutes your acceptance of those changes.
+
+6. Contact Us
+If you have any questions or concerns about these Terms, please contact us at support@container23.com.
+
+7. Last updated
+These terms of service was last updated on 01/24/2022.
