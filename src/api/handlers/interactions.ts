@@ -9,7 +9,7 @@ import {
   SIMPLE_CHECK_COMMAND,
   VERBOSE_CHECK_COMMAND
 } from '../../services/discord/commands';
-import { getRandomEmoji } from '../../utils/index';
+import { getRandomEmoji } from '../../utils/analytics';
 import { searchAMLFile } from '../../services/search/aml';
 import { Handler, API_BASE_URL } from '../utils/index'
 import { AMLSearchResponse } from '../../services/search/types';
