@@ -1,0 +1,21 @@
+<script>
+    // this scripts should be loaded after page rendering
+    ((ctx) => {
+        // send custom gtag event 
+        function sendEvent(name) {
+            if (gtag && name) {
+                gtag('event', name);
+            }
+        }
+
+        function handleDiscordBtn() {
+            sendEvent('discord_server_integration_click');
+        }
+
+        // register handlers
+        const discordBtn = ctx.getElementById("discordIntegrateBtn");
+        if (discordBtn) {
+            discordBtn.addEventListener('click', handleDiscordBtn);
+        }
+    })(document);
+</script>

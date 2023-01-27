@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./header', {title: "KYC/AML Bot"}) %>
+  <%- include('./header', {route:"/home", title: "AMLBot HomePage", gtmId: gtmId}) %>
   <body>
     <div class="container">
-      <h1>KYC/AML Discord Bot</h1>
+      <h1>AML Discord Bot</h1>
       <div class="img-container">
         <img class="home-icon" src="/assets/black-discord-icon.jpg" />
       </div>
@@ -11,15 +11,12 @@
         A simple Discord Bot for performing a wallet, address and name check
         against the US FINCEN AML list.
       </p>
-      <a
-        class="btn"
-        rel="noopener noreferrer"
-        target="_blank"
-        href="<%= discordBotAuth %>"
-        >Integrate To Your Discord Server
+      <a id="discordIntegrateBtn" class="btn" rel="noopener noreferrer" target="_blank" href="<%= discordBotAuth %>">Integrate To Your Discord
+        Server
         <span>➪</span>
       </a>
     </div>
+    <%- include('./scripts'); %>
     <%- include('./footer'); %>
   </body>
 </html>
