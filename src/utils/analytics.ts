@@ -1,4 +1,3 @@
-import { Request } from 'express';
 import fetch from 'node-fetch';
 import { logger } from './logger';
 
