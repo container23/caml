@@ -1,14 +1,10 @@
 import { handleAMLCheckResults } from './handlers/aml';
 import { handleInteractions } from './handlers/index';
-import { Server, DISCORD_BOT_AUTH_URL } from './utils/index';
+import { Server } from './utils/index';
+import { handleHome } from './handlers/home';
 
 export const setupRoutes = (app: Server) => {
-  app.get('/', (_, res) => {
-    const data = {
-      discordBotAuth: DISCORD_BOT_AUTH_URL,
-    };
-    res.render('home', data);
-  });
+  app.get('/', handleHome);
 
   /**
    * Interactions endpoint URL where Discord will send HTTP requests

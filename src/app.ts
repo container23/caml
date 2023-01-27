@@ -2,13 +2,11 @@ import 'dotenv/config';
 import path from 'path';
 import server from './api/server.js';
 import { initCommands } from './services/discord';
+import { ENVIRONMENT } from './utils/index.js';
 import { logger } from './utils/logger';
 
-const {
-  PORT: PORT = 8080,
-  NODE_ENV: ENVIRONMENT = 'dev',
-  ENABLE_DISCORD_CMDS_REGISTRATION = 'true',
-} = process.env;
+const { PORT: PORT = 8080, ENABLE_DISCORD_CMDS_REGISTRATION = 'true' } =
+  process.env;
 
 server.set('view engine', 'ejs');
 server.set('views', path.join(__dirname, 'views'));
