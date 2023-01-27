@@ -1,12 +1,13 @@
+import { Request } from 'express';
 import fetch from 'node-fetch';
 import { logger } from './logger';
 
-export const gtmId: string = process.env.GTM_ID || '';
-const gtmClientId: string = process.env.GTM_CLIENT_ID || '';
-const gtmApiSecret: string = process.env.GTM_API_SECRET || '';
+export const GTM_ID: string = process.env.GTM_ID || '';
+const GTM_ClIENT_ID: string = process.env.GTM_CLIENT_ID || '';
+const GTM_API_SECRET: string = process.env.GTM_API_SECRET || '';
 
 const gtmBaseURL = 'https://www.google-analytics.com/mp/collect';
-const gtmURL = `${gtmBaseURL}?measurement_id=${gtmId}&api_secret=${gtmApiSecret}`;
+const gtmURL = `${gtmBaseURL}?measurement_id=${GTM_ID}&api_secret=${GTM_API_SECRET}`;
 
 export type Event = {
   name: string;
@@ -18,42 +19,26 @@ export type Event = {
  * @param events An array of event items.
  * @param userId Optional. A unique identifier for a user.
  */
-export const sendEvent = async (events: Event[], userId?: string) => {
-  logger.info('sending new anylytics event');
-  if (!gtmId || !gtmApiSecret || !gtmClientId) {
+export const sendEvents = async (events: Event[], userId?: string) => {
+  logger.info(`sending new anylytics event: ${userId}`);
+  if (!GTM_ID || !GTM_API_SECRET || !GTM_ClIENT_ID) {
     logger.warn({
       msg: 'missing required values to send analytics event',
-      gtmId: !!gtmId,
-      gtmApiSecret: !!gtmApiSecret,
-      gtmClientId: !!gtmClientId,
+      gtmId: !!GTM_ID,
+      gtmApiSecret: !!GTM_API_SECRET,
+      gtmClientId: !!GTM_ClIENT_ID,
     });
-    return;
+    throw new Error('missing required values to send analytics event');
   }
-    
+
   return fetch(gtmURL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      client_id: gtmClientId,
+      client_id: GTM_ClIENT_ID,
       user_id: userId,
       events: events,
     }),
+    // todo add timeout controller
   });
-};
-
-/**
- * Track discord interaction request
- * @param req
- */
-export const trackDiscordInteractionReq = async () => {
-  try {
-    // TODO: extract discord data
-    // discord req
-    // extract
-    // Discord server ID
-    // User ID
-    // Searched texts
-  } catch (error) {
-    logger.error({ msg: 'error sending discord analytics reqs', error });
-  }
 };
