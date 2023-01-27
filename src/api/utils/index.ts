@@ -12,9 +12,3 @@ export type Handler = (
 
 export type Server = Express;
 export { Request, Response, NextFunction };
-
-export const asyncHandler =
-  (fn: Function): Handler =>
-  (req, res, next) => {
-    fn(req, res, next).catch(next);
-  };

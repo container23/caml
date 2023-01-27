@@ -17,7 +17,7 @@ export const setupMiddlewares = (app: Server) => {
 const buildJSONParserOpts = () =>
   process.env.NODE_ENV === 'production'
     ? {
-        // enabled discord request authorization, for non-dev environment
-        verify: verifyDiscordRequest(process.env.PUBLIC_KEY || ''),
-      }
+      // enabled discord request authorization, for non-dev environment
+      verify: verifyDiscordRequest(process.env.PUBLIC_KEY || ''),
+    }
     : undefined;

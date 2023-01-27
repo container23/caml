@@ -38,15 +38,15 @@ export const handleInteractions: Handler = async (req, res) => {
   if (type === InteractionType.APPLICATION_COMMAND) {
     const { name: cmdName } = req.body.data || {};
     switch (cmdName) {
-      case TEST_COMMAND.name:
-        return handleTestCommand(req, res);
-      case SIMPLE_CHECK_COMMAND.name:
-      case VERBOSE_CHECK_COMMAND.name:
-        return handleVerificationChecksCmds(req, res);
-      default:
-        return res
-          .status(400)
-          .send({ error: `interaction command '${cmdName}' is not supported` });
+    case TEST_COMMAND.name:
+      return handleTestCommand(req, res);
+    case SIMPLE_CHECK_COMMAND.name:
+    case VERBOSE_CHECK_COMMAND.name:
+      return handleVerificationChecksCmds(req, res);
+    default:
+      return res
+        .status(400)
+        .send({ error: `interaction command '${cmdName}' is not supported` });
     }
   }
   return res

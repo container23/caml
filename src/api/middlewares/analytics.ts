@@ -30,6 +30,7 @@ export const trackDiscordInteractionReq = async (req: Request) => {
       params: params,
     };
     await sendEvents([event], userId);
+    /* eslint-disable @typescript-eslint/no-explicit-any */
   } catch (error: any) {
     logger.error({
       msg: 'error sending discord analytics event',
