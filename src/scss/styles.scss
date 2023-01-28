@@ -1,0 +1,175 @@
+// styles.scss
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won't be available)
+
+// @import "../../node_modules/bootstrap-scss/bootstrap";
+
+
+// Option B: Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../../node_modules/bootstrap-scss/functions";
+
+// 2. Include any default variable overrides here
+
+// TODO: add custom colors
+// Primary Color: #003366;
+// Secondary Color: #6699CC;
+// Tertiary Color: #B2CCFF;
+// Accent Color 1: #006699;
+// Accent Color 2: #3399FF;
+// Accent Color 3: #66CCFF;
+
+// Default variable overrides
+$body-bg: #000;
+$body-color: #111;
+
+$primary: #003366;
+$secondary: #6699CC;
+$danger: #ff4136;
+
+// Default variable overrides
+// $body-bg: #000;
+$body-color: $primary;
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  // "success":    $success,
+  // "info":       $info,
+  // "warning":    $warning,
+  "danger":     $danger,
+  // "light":      $light,
+  // "dark":       $dark
+);
+
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "../../node_modules/bootstrap-scss/variables";
+
+// 4. Include any default map overrides here
+
+// 5. Include remainder of required parts
+@import "../../node_modules/bootstrap-scss/maps";
+@import "../../node_modules/bootstrap-scss/mixins";
+@import "../../node_modules/bootstrap-scss/root";
+
+// 6. Optionally include any other parts as needed
+@import "../../node_modules/bootstrap-scss/utilities";
+@import "../../node_modules/bootstrap-scss/reboot";
+@import "../../node_modules/bootstrap-scss/type";
+@import "../../node_modules/bootstrap-scss/images";
+@import "../../node_modules/bootstrap-scss/containers";
+@import "../../node_modules/bootstrap-scss/grid";
+@import "../../node_modules/bootstrap-scss/helpers";
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "../../node_modules/bootstrap-scss/utilities/api";
+
+// 8. Add additional custom code here
+
+
+// custom overwrites from YSF
+body {
+  font-family: 'Open Sans';
+  font-size: 100%;
+  font-weight: 300;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+.container {
+  align-content: center;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 46rem;
+}
+
+.results-container {
+    border: 1px solid gainsboro;
+    margin: 4px;
+    flex-basis: 100%;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.results-img-container {
+    display: inline-block;
+    flex-basis: 100%;
+}
+
+.results-img {
+    max-width: 300px;
+}
+
+.header > h1 {
+    margin: 0.5em 0 0.5em 0;
+}
+
+h1 {
+  color: #666666;
+  font-size: 2rem;
+  line-height: 1.5em;
+  margin:2em 0 2em 0;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #757474;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+.results-list {
+    text-align: start;
+    list-style: none;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.warning-icon {
+    color: #ffcc00
+}
+
+p {
+    font-size: 1.5rem;
+    line-height: 1.2em;
+}
+
+.btn {
+    background: #50577A none repeat scroll 0 0;
+    border: 1px solid #ffffff;
+    border-radius: 1pc;
+    color: #ffffff;
+    outline: medium none;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.btn:hover { 
+    Background-color: #6B728E; 
+    Color: #ffffff;
+}
+
+.img-container {
+    flex-basis: 100%;
+}
+
+.home-icon {
+  display: inline-block;
+  max-width: 300px;
+}
+
+footer {
+    padding: 10px;
+    margin: 10px;
+}

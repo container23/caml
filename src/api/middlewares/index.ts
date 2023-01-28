@@ -6,6 +6,8 @@ import { trackAnalytics } from './analytics';
 export const setupMiddlewares = (app: Server) => {
   // static assets
   app.use('/assets', ServeStatic('dist/views/assets'));
+  // scss compile css
+  app.use('/css', ServeStatic('dist/css'));
   // logger
   app.use(requestLogger());
   // json parser

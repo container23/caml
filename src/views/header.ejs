@@ -1,25 +1,8 @@
 <head>
   <title><%= title %></title>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" type="image/x-icon" href="/assets/black-discord-icon.jpg" />
   <%- include('./styles'); %>
-  <% if (!!gtmId) { %>
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=<%= gtmId %>"
-  ></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', '<%= gtmId %>', {
-      page_path: '<%= route %>',
-      transport_url: document.location.origin
-    });
-  </script>
-  <% } %>
 </head>
