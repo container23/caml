@@ -18,7 +18,7 @@ import {
 
 export const AML_LIST_FILEPATH =
   process.env.AML_LIST_FILEPATH ||
-  path.join(__dirname, '../../data-sources/sdnlist.txt');
+  path.join(__dirname, '../../../data-sources/sdnlist.txt');
 
 /**
  * Search if a {inputTxt} match is found in the given AML filepath
