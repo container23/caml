@@ -1,11 +1,12 @@
 // Helpers for search AML sources
 
 import { once } from 'node:events';
-import path from 'path';
+import path from 'node:path';
 import {
   AMLSearchMatch,
   AMLSearchResponse,
   AML_STATUS,
+  AML_STATUS_MESSAGES,
   LineMatch,
 } from './types';
 import {
@@ -18,10 +19,6 @@ import {
 export const AML_LIST_FILEPATH =
   process.env.AML_LIST_FILEPATH ||
   path.join(__dirname, '../../data-sources/sdnlist.txt');
-export const AML_STATUS_MESSAGES = {
-  [AML_STATUS.SAFE]: '✅ (**SAFE**)',
-  [AML_STATUS.BANNED]: '🚫 (**BANNED**)',
-};
 
 /**
  * Search if a {inputTxt} match is found in the given AML filepath
@@ -124,3 +121,5 @@ const buildResultsOutput = ({
     totalMatches,
   };
 };
+
+export default searchAMLFile;

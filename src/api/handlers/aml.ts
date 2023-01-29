@@ -2,22 +2,28 @@ import { searchAMLFile } from '../../services/search/aml';
 import { logger } from '../../utils/logger';
 import { Handler } from '../utils';
 
-export const handleAMLCheckResults: Handler = async (req, res) => {
-  // TODO: perform auth check
-  const searchTerm = req.query.search as string;
-  if (!searchTerm) {
-    res.status(400).send('Invalid Request: missing search term');
-    return
+export const handleAMLSearch: Handler = async (req, res) => {
+  if (!req.query || !req.query.term) {
+    return res.json({
+      status: 400,
+      message: 'invalid search term provided'
+    });
   }
+
   try {
+    const searchTerm = req.query.term as string;
     const results = await searchAMLFile(searchTerm);
-    res.render('aml-results', { data: results });
+    if (req.get('Content-Type') === 'application/json') {
+      res.json(results);
+    } else {
+      res.render('aml-results', { data: results });
+    }
   } catch (err) {
-    logger.error({ msg: 'error rendering search results', err });
-    res
-      .status(500)
-      .send(
-        'Oops :/ something went wrong rendering your results. Please try again later '
-      );
+    logger.error({ msg: 'error rendering search results', error: err });
+    res.json({
+      status: 500,
+      message:
+        'Oops :/ something went wrong searching results. Please try again later',
+    });
   }
-}
+};
