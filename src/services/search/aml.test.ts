@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals';
-import { searchAMLFile, AML_STATUS_MESSAGES } from './aml';
-import { AML_STATUS } from './types';
+import { searchAMLFile } from './aml';
+import { AML_STATUS, AML_STATUS_MESSAGES } from './types';
 import path from 'path';
 
 const TEST_FILE_PATH = path.join(

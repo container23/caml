@@ -12,3 +12,17 @@ export type Handler = (
 
 export type Server = Express;
 export { Request, Response, NextFunction };
+
+// Test Mocks
+export const mockReqRes = (mockReq?: unknown, mockRes?: unknown) => {
+  const req = mockReq || {
+    query: {},
+    headers: {},
+  };
+  const res = mockRes || {
+    send: jest.fn(),
+    json: jest.fn(),
+    render: jest.fn(),
+  };
+  return { req, res };
+};
