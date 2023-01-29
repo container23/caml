@@ -3,6 +3,11 @@ export enum AML_STATUS {
    BANNED = 'banned',
 }
 
+export const AML_STATUS_MESSAGES = {
+  [AML_STATUS.SAFE]: '✅ (**SAFE**)',
+  [AML_STATUS.BANNED]: '🚫 (**BANNED**)',
+};
+
 export type LineMatch = {
   lineNum: number;
   lineText: string;
