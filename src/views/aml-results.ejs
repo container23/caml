@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include('./header', {route:"/amlresults", title: "AML Check Results", gtmId: gtmId}) %>
-  <body>
+  <body class="bg-color">
+    <%- include('./search'); %>
     <div class="container">
-      <div class="header">
-        <h1>AML Check Results</h1>
-        <div class="results-img-container">
-          <img class="results-img" src="/assets/authcheck-results.png" />
-        </div>
-      </div>
       <div class="container results-container">
-        <h2>Summary</h2>
+        <h3>Summary</h3>
         <hr />
         <p><b>Search Term:</b> <%= data.searchTerm %></p>
-        <p><b>Found Match:</b> <%= data.foundMatch %></p>
+        <p class="text-danger"><b>Found Match:</b> <%= data.foundMatch %></p>
         <p><b>Status:</b> <%= data.status.toUpperCase() %></p>
         <p>
           <b>Source List:</b>
-          <a
-            href="https://www.treasury.gov/ofac/downloads/sdnlist.txt"
+          <a href="https://www.treasury.gov/ofac/downloads/sdnlist.txt"
             rel="noopener noreferrer"
-            target="_blank"
-            >sndlist.txt</a
-          >
+            target="_blank" >sndlist.txt</a>
         </p>
         <p><b>Source List Updated Date:</b> <%= data.sourceUpdatedAt %></p>
         <% if (data.foundMatch && data.matches.length > 0) { %>
       </div>
+      <br>
       <div class="results-container">
-        <h2>Results Details</h2>
+        <h3>Results Details</h3>
         <hr />
-        <h3>Found <%= data.totalMatches %> matches</h3>
+        <h4>Found <%= data.totalMatches %> matches</h4>
         <ul class="results-list">
           <% data.matches.forEach((m) => { %>
           <li>

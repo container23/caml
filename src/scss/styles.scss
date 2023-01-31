@@ -13,24 +13,21 @@
 
 // 2. Include any default variable overrides here
 
-// TODO: add custom colors
-// Primary Color: #003366;
-// Secondary Color: #6699CC;
-// Tertiary Color: #B2CCFF;
-// Accent Color 1: #006699;
-// Accent Color 2: #3399FF;
-// Accent Color 3: #66CCFF;
+// Chat GPT
+// $Primary-Color: #003366;
+// $Secondary-Color: #6699CC;
+// $Tertiary-Color: #B2CCFF;
+// $Accent-Color_1: #006699;
+// $Accent-Color-2: #3399FF;
+// $Accent-Color-3: #66CCFF;
+
 
 // Default variable overrides
-$body-bg: #000;
-$body-color: #111;
-
-$primary: #003366;
-$secondary: #6699CC;
+$body-bg: #e0e1dd;
+$primary: #0d1b2a;
+$secondary: #415a77;
 $danger: #ff4136;
 
-// Default variable overrides
-// $body-bg: #000;
 $body-color: $primary;
 
 $theme-colors: (
