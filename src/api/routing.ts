@@ -1,4 +1,5 @@
-import { handleHome, handleDiscordInteractions, handleAMLSearch } from './handlers';
+import { handleHome, handleDiscordInteractions, handleAMLSearch} from './handlers';
+import { handleBot } from './handlers/bot';
 import { Server } from './utils/index';
 
 export const setupRoutes = (app: Server) => {
@@ -15,5 +16,10 @@ export const setupRoutes = (app: Server) => {
   /**
    * AML Search
    */
-  app.get('/aml/search', handleAMLSearch)
+  app.get('/aml/search', handleAMLSearch);
+
+  /**
+   * Discord Bot Integration
+   */
+  app.get('/bot', handleBot);
 };

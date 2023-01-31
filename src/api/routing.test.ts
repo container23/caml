@@ -15,6 +15,10 @@ describe('API Routes Registration', () => {
       path: '/aml/search',
       reqType: 'get',
     },
+    {
+      path: '/bot',
+      reqType: 'get',
+    },
   ];
 
   const registeredRoutes: Record<string, string> = {};
