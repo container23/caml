@@ -36,6 +36,7 @@ describe('Search Utils', () => {
   describe('isValidDateStr', () => {
     expect(isValidDateStr('01/23/2023')).toBe(true);
     expect(isValidDateStr('1/26/2023')).toBe(true);
+    expect(isValidDateStr('1/2/2023')).toBe(true);
     expect(isValidDateStr('01/23/23')).toBe(false);
   });
 });
