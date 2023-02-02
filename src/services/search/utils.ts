@@ -29,7 +29,7 @@ export const sanitizeStr = (str = '') => {
  * @returns 
  */
 export const isValidDateStr = (dateStr = '') =>
-  /\d{1,2}\/\d{2}\/\d{4}/gm.test(dateStr);
+  /\d{1,2}\/\d{1,2}\/\d{4}/gm.test(dateStr);
 
 export const buildReadlineStream = async (filepath: string) => {
   const inStream = fs.createReadStream(filepath);
