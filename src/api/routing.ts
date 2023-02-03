@@ -1,5 +1,6 @@
 import { handleHome, handleDiscordInteractions, handleAMLSearch} from './handlers';
 import { handleBot } from './handlers/bot';
+import { handleAbout } from './handlers/about';
 import { Server } from './utils/index';
 
 export const setupRoutes = (app: Server) => {
@@ -22,4 +23,9 @@ export const setupRoutes = (app: Server) => {
    * Discord Bot Integration
    */
   app.get('/bot', handleBot);
+
+  /**
+   * About
+   */
+  app.get('/about', handleAbout);
 };
