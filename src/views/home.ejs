@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./header', {route:"/home", title: "AMLBot HomePage", gtmId: gtmId}) %>
-  <body class="bg-color">
+<%- include('./header', {route:"/home", title: "AMLBot HomePage", gtmId: gtmId}) %>
+<body class="bg-color">
     <div class="container">
-    <%- include('./search'); %>
+
+      <%- include('./search'); %>
+
+      <%- include('./footer'); %>
     </div>
     <%- include('./scripts'); %>
-    <%- include('./footer'); %>
-  </body>
+</body>
 </html>

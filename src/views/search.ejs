@@ -1,22 +1,19 @@
-<FORM method=GET action="/aml/search?term">
-<CENTER>
-<a href="/"><IMG SRC="/assets/aml-istockphoto.jpg" width=551 height=213> </a> <br>
-<table border=0 cellspacing=0 cellpadding=5 width="70%" style="color:#0d1b2a">
-<tr><td bgcolor="#EEEEEE">
-<center>
-Check Name, Address, Crypto Address using this tool!<BR>
-<INPUT type=text name="term" value="" size=40><BR>
-<input type="checkbox" name="terms" id="terms" onchange="activateButton(this)">I agree  
-<a rel="noopener noreferrer" target="_blank" href="https://github.com/container23/kycaml-bot/blob/main/tos.txt">Terms of Service</a>
-<br>
-<SELECT name="num">
-<OPTION value=10 selected>10 results<OPTION value=30>30 results<OPTION value=100>100 results</SELECT>
-<INPUT type=submit value="AML Search"><br>
-<I>Index contains ~235k lines (soon to be much bigger)</I>
-</center>
-</td></tr>
-</form>
-<tr><td>
-</td></tr>
-</TABLE>
-</CENTER>
+<div class="mx-auto w-50">
+    <div class="wrap">
+        <div class="logo center">
+            <a href="/"><IMG SRC="/assets/caml-logo2.png" width="100%" height="100%"> </a> 
+        </div>
+    </div>
+    <div class="form">
+        <FORM method=GET action="/aml/search?term">
+        <p>Check Name, Address, Crypto Address using this tool!</p>
+        <INPUT type=text name="term" value="" size=40>
+        <BR>
+        <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)">&nbsp; I agree with
+        <a rel="noopener noreferrer" target="_blank" href="https://github.com/container23/kycaml-bot/blob/main/tos.txt">Terms of Service</a>
+        <INPUT type=submit value="AML Search"><br>
+        <br>
+        <p class="italic">Index contains ~235k lines (soon to be much bigger)</p>
+        </form>
+    </div>
+</div>

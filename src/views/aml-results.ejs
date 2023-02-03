@@ -2,46 +2,42 @@
 <html lang="en">
   <%- include('./header', {route:"/amlresults", title: "AML Check Results", gtmId: gtmId}) %>
   <body class="bg-color">
-    <%- include('./search'); %>
     <div class="container">
-      <div class="container results-container">
-        <h3>Summary</h3>
-        <hr />
-        <p><b>Search Term:</b> <%= data.searchTerm %></p>
-        <p class="text-danger"><b>Found Match:</b> <%= data.foundMatch %></p>
-        <p><b>Status:</b> <%= data.status.toUpperCase() %></p>
-        <p>
-          <b>Source List:</b>
-          <a href="https://www.treasury.gov/ofac/downloads/sdnlist.txt"
-            rel="noopener noreferrer"
-            target="_blank" >sndlist.txt</a>
-        </p>
-        <p><b>Source List Updated Date:</b> <%= data.sourceUpdatedAt %></p>
+    <%- include('./search-mini'); %>
+
+    <div class="container results-container">
+      <p>
+        <b>Search Term:</b> <%= data.searchTerm %> |
+        <b>Found <%= data.totalMatches %> matches </b> |
+        <b class="text-danger">Found Match:</b> <%= data.foundMatch %> |
+        <b>Status:</b> <%= data.status.toUpperCase() %> |
+        <b>Source List:</b>
+        <a href="https://www.treasury.gov/ofac/downloads/sdnlist.txt"
+          rel="noopener noreferrer"
+          target="_blank" >sndlist.txt</a> updated <%= data.sourceUpdatedAt %> 
         <% if (data.foundMatch && data.matches.length > 0) { %>
-      </div>
-      <br>
-      <div class="results-container">
-        <h3>Results Details</h3>
-        <hr />
-        <h4>Found <%= data.totalMatches %> matches</h4>
-        <ul class="results-list">
-          <% data.matches.forEach((m) => { %>
-          <li>
-            <p>
-              <span class="warning-icon">⚠</span> Matches on paragraph from line
-              <%= m.blockStart %> to <%= m.blockEnd %>:
-            </p>
-            <ol>
-              <% m.matchedLines.forEach((ml) => { %>
-              <li><b>Line # <%= ml.lineNum %></b>: <%= ml.lineText %></li>
-              <% }) %>
-            </ol>
-          </li>
-          <% }) %>
-        </ul>
-        <% } %>
-      </div>
-      <%- include('./footer'); %>
+      <hr />
     </div>
-  </body>
+    <br>
+    <div class="results-container">
+      <ul class="results-list">
+        <% data.matches.forEach((m) => { %>
+        <li>
+          <p>
+            <span class="warning-icon">⚠</span> Matches on paragraph from line
+            <%= m.blockStart %> to <%= m.blockEnd %>:
+            <% m.matchedLines.forEach((ml) => { %>
+              <br>
+              <b>Line # <%= ml.lineNum %></b>: <%= ml.lineText %>
+            <% }) %>
+          </p>
+          <br>
+        </li>
+        <% }) %>
+      </ul>
+      <% } %>
+    </div>
+  </div>
+  <%- include('./footer'); %>
+</body>
 </html>
