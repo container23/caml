@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./header', {route:"/home", title: "AMLBot HomePage", gtmId: gtmId}) %>
+<body class="bg-color">
+  <div class="container">
+
+    <div class="search mx-auto w-50">
+        <div class="wrap">
+            <div class="logo center">
+                <a href="/"><IMG SRC="/assets/caml-logo2.png" width="100%" height="100%"> </a> 
+            </div>
+        </div>
+
+    <div class="form">
+        <h2>Discord Bot Integration</h2>
+        <p class="text-primary primary">
+        A simple Discord Bot for performing a wallet, address <br>
+        and name check against the US FINCEN AML list.  </p>
+        <h2>
+          <a id="discordIntegrateBtn" class="btn" rel="noopener noreferrer" target="_blank" href="<%= discordBotAuth %>">Integrate To Your Discord
+          Server
+          <span>➪</span>
+          </a>
+        </h2>
+    </div>
+
+  </div> 
+</div>
+<%- include('./footer'); %>
+</body>
+</html>
