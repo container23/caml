@@ -73,13 +73,46 @@ $theme-colors: (
 }
 
 // Search Section
-.search{
+.search {
     text-align: center;
 }
+
+#search-input {
+    border-radius: 0;
+}
+
+
 .form {
     background-color:#eee;
     border: 1px #0d1b2a;
     padding: 1em;
+}
+
+.search-btn-container {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0;
+}
+
+.search-agreement-txt {
+  align-self: flex-end;
+  font-size: 10px;
+}
+
+.search-icon > svg {
+    position: absolute;
+    display: inline-block;
+    width: 40px;
+    height: 17px;
+    margin-top: 11px;
+    margin-left: 11px;
+}
+.search-btn {
+    font-size: 20px;
+    padding: 2px 30px;
+    margin-left: 10px;
 }
 
 // Results Section
@@ -121,6 +154,6 @@ $theme-colors: (
 
 // Footer Section
 footer {
-    padding: 2em;
-    margin: 2em;
+    padding: 10px;
+    margin: 10px;
 }

@@ -12,15 +12,23 @@ describe('API Routes Registration', () => {
       reqType: 'post',
     },
     {
+      path: '/discord/bot',
+      reqType: 'get',
+    },
+    {
       path: '/aml/search',
       reqType: 'get',
     },
     {
-      path: '/bot',
+      path: '/about',
       reqType: 'get',
     },
     {
-      path: '/about',
+      path: '/privacy',
+      reqType: 'get',
+    },
+    {
+      path: '/terms',
       reqType: 'get',
     },
   ];

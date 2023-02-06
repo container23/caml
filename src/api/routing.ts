@@ -1,6 +1,13 @@
-import { handleHome, handleDiscordInteractions, handleAMLSearch} from './handlers';
-import { handleBot } from './handlers/bot';
-import { handleAbout } from './handlers/about';
+import {
+  handleHome,
+  handleDiscordInteractions,
+  handleAMLSearch,
+  handlePrivacy,
+  handleBot,
+  handleAbout,
+  handleTerms
+} from './handlers';
+import {  } from './handlers/bot';
 import { Server } from './utils/index';
 
 export const setupRoutes = (app: Server) => {
@@ -10,11 +17,6 @@ export const setupRoutes = (app: Server) => {
   app.get('/', handleHome);
 
   /**
-   * Discord Bot Interactions requests
-   */
-  app.post('/discord/interactions', handleDiscordInteractions);
-
-  /**
    * AML Search
    */
   app.get('/aml/search', handleAMLSearch);
@@ -22,10 +24,17 @@ export const setupRoutes = (app: Server) => {
   /**
    * Discord Bot Integration
    */
-  app.get('/bot', handleBot);
+  app.get('/discord/bot', handleBot);
 
   /**
-   * About
+   * Discord Bot Interactions requests
+   */
+  app.post('/discord/interactions', handleDiscordInteractions);
+
+  /**
+   * Info pages
    */
   app.get('/about', handleAbout);
+  app.get('/privacy', handlePrivacy);
+  app.get('/terms', handleTerms);
 };

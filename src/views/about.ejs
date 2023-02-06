@@ -1,39 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('./header', {route:"/home", title: "AMLBot HomePage", gtmId: gtmId}) %>
-<body class="bg-color">
-  <div class="container">
+<%- include('./header', {route:"/about", title: "About" , gtmId: gtmId}) %>
 
-    <div class="search mx-auto w-50">
+  <body class="bg-color">
+    <div class="container">
+
+      <div class="search mx-auto w-50">
         <div class="wrap">
-            <div class="logo center">
-                <a href="/"><IMG SRC="/assets/caml-logo2.png" width="100%" height="100%"> </a> 
-            </div>
+          <div class="logo center">
+            <a href="/"><IMG SRC="/assets/caml-logo2.png" width="100%" height="100%"> </a>
+          </div>
         </div>
-    </div>
-    <div class="about">
-      <div class="form w-75 center">
-        <h2 class="p-3">About our AML Solution </h2>
-        <p>
-          Money laundering is a major issue that threatens the stability and integrity of financial systems worldwide. Anti-Money Laundering (AML) solutions are designed to help financial institutions and other regulated entities comply with AML regulations and detect and prevent money laundering activities.
-        </p>
-        <p>
-          Our Anti Money Laundering solution offers a simple and effective way to comply with AML regulations, detect and prevent money laundering activities, and safeguard against financial crime. Here are some of the top benefits of using our AML solution :
-        </p>
-        <ul>
-          <li> Simplicity: Our AML solution is designed to be user-friendly and easy to use, making it accessible to businesses of all sizes.  </li>
-          Automation: Our AML solution automates many of the manual processes involved in AML compliance, reducing the risk of human error and saving time.  </li>
-          <li> Accuracy*: Our AML solution uses advanced algorithms and data analysis techniques to accurately identify potential money laundering activities, reducing the risk of false positives.  </li>
-          <li> Compliance*: Our AML solution helps organizations comply with AML regulations, reducing the risk of penalties and reputational damage.  </li>
-          <li> Integration: Our AML solution is designed to be easily integrated into existing systems, minimizing disruption to day-to-day operations.  </li>
-          <li> Ongoing monitoring*: Our AML solution provides ongoing monitoring and reporting, ensuring that organizations remain compliant with AML regulations and that potential money laundering activities are detected and prevented.  </li>
-        </ul>
-        <p> Choose our Anti Money Laundering solution and take the first step towards a more secure and compliant future.  </p>
-        <p class="small">*)features are in current development or can be implemented to tailor customer needs</p>
+      </div>
+      <div class="text-start">
+        <div class="form w-75 center">
+          <h2 class="p-3">About our AML Solution </h2>
+          <p>
+            Money laundering is a major issue that threatens the stability and integrity of financial systems worldwide.
+            Anti-Money Laundering (AML) solutions are designed to help financial institutions and other regulated
+            entities comply with AML regulations and detect and prevent money laundering activities.
+          </p>
+          <p>
+            Our Anti Money Laundering solution offers a simple and effective way to comply with AML regulations, detect
+            and prevent money laundering activities, and safeguard against financial crime. Here are some of the top
+            benefits of using our AML solution :
+          </p>
+          <ul>
+            <li> Simplicity: Our AML solution is designed to be user-friendly and easy to use, making it accessible to
+              businesses of all sizes. </li>
+            Automation: Our AML solution automates many of the manual processes involved in AML compliance, reducing the
+            risk of human error and saving time. </li>
+            <li>Data Sources: Our AML list is automatically updated on our servers every 24 hours from the <a
+                rel="noopener noreferrer" target="_blank" href="https://www.treasury.gov/ofac/downloads/sdnlist.txt">U.S
+                Department Of The
+                Treasury source file sdnlist.txt</a>. We perform automatic integrity verification of the downloaded
+              sndlist.txt SHA-256 checksum against the <a rel="noopener noreferrer" target="_blank"
+                href="https://home.treasury.gov/policy-issues/financial-sanctions/specially-designated-nationals-list-sdn-list/hash-values-for-ofac-sanctions-list-files">OFAC
+                hash values list.</a></li>
+            <li> Accuracy*: Our AML solution uses advanced algorithms and data analysis techniques to accurately
+              identify potential money laundering activities, reducing the risk of false positives. </li>
+            <li> Compliance*: Our AML solution helps organizations comply with AML regulations, reducing the risk of
+              penalties and reputational damage. </li>
+            <li> Integration: Our AML solution is designed to be easily integrated into existing systems, minimizing
+              disruption to day-to-day operations. </li>
+            <li> Ongoing monitoring*: Our AML solution provides ongoing monitoring and reporting, ensuring that
+              organizations remain compliant with AML regulations and that potential money laundering activities are
+              detected and prevented. </li>
+          </ul>
+          <p> Choose our Anti Money Laundering solution and take the first step towards a more secure and compliant
+            future. </p>
+          <p class="small">*)features are in current development or can be implemented to tailor customer needs</p>
+        </div>
       </div>
     </div>
-  </div> 
-</div>
-<%- include('./footer'); %>
-</body>
+    </div>
+    <%- include('./footer'); %>
+  </body>
+
 </html>
