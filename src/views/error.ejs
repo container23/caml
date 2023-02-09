@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./header', {route:"/error", title: "Unexpected Error" }) %>
+
+  <body class="bg-color bg-color container d-flex justify-content-center align-items-center h-100"
+    style="min-height:100vh;">
+    <div class="container-sm text-center mt-20 w-50">
+      <h1> Oops :/ </h1>
+      <h3> We experienced an unexpected error processing your request.</h3>
+      <% if (error) { %>
+        <div class="alert alert-danger text-center" role="alert">
+          <%= error.message %>
+        </div>
+        <% } %>
+          <h3>Please try again!</h3>
+          <p>Our team has been notified of this incident. If you continue to experience this issue, please contact us at
+            <a href="mailto:support@container23.com?subject=Unexpected Server Errors">support@container23.com.</a>
+          </p>
+          <%- include('./footer'); %>
+    </div>
+  </body>
+</html>
