@@ -18,9 +18,16 @@
 $body-bg: #e0e1dd;
 $primary: #0d1b2a;
 $secondary: #415a77;
+$secondary2: #6B728E;
+$third: #484959;
+$bg-contrast: #75767e;
 $danger: #ff4136;
+$warning: #c3970d;
+
 
 $body-color: $primary;
+$btn-color: $third;
+$btn-hover: $secondary2;
 
 $theme-colors: (
   "primary":    $primary,
@@ -88,6 +95,10 @@ $theme-colors: (
     padding: 1em;
 }
 
+.search-nav-container {
+    background-color: #75767e !important;
+}
+
 .search-btn-container {
   margin-top: 20px;
   display: flex;
@@ -102,6 +113,7 @@ $theme-colors: (
 }
 
 .search-icon > svg {
+    color: #ffffff;
     position: absolute;
     display: inline-block;
     width: 40px;
@@ -109,21 +121,53 @@ $theme-colors: (
     margin-top: 11px;
     margin-left: 11px;
 }
+
 .search-btn {
+    background: $btn-color none repeat scroll 0 0;
+    color: #ffffff;
+    outline: medium none;
+    text-decoration: none;
+    font-weight: 600; 
     font-size: 20px;
     padding: 2px 30px;
     margin-left: 10px;
 }
 
+.search-btn:hover { 
+    background-color: $btn-hover; 
+    color: #ffffff;
+}
+
 // Results Section
+.root-results-container {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 10px 4px;
+  text-align: center;
+}
+
+.results-container > p {
+    font-size: 18px;
+}
+
 .results-list {
     text-align: start;
-    list-style: none;
     max-height: 50em;
     overflow-y: scroll;
+    border-radius: unset;
 }
+
+.results-list > li {
+    background-color: #dcdcdc;
+}
+
+.results-list > li > div :hover {
+    background-color: $secondary2; 
+    color: #ffffff;
+}
+
 .warning-icon {
-    color: #ffcc00
+    color: $warning;
+    font-size: 16px;
 }
 
 // About Section
@@ -136,7 +180,7 @@ $theme-colors: (
 
 // Bot Section
 .btn {
-    background: #484959 none repeat scroll 0 0;
+    background: $btn-color none repeat scroll 0 0;
     border: 1px solid #ffffff;
     border-radius: 1pc;
     color: #ffffff;
@@ -148,8 +192,8 @@ $theme-colors: (
 }
 
 .btn:hover { 
-    Background-color: #6B728E; 
-    Color: #ffffff;
+    background-color: $btn-hover; 
+    color: #ffffff;
 }
 
 // Footer Section
