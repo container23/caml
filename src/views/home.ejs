@@ -3,9 +3,14 @@
 <%- include('./header', {route:"/home", title: "AMLBot HomePage", gtmId: gtmId}) %>
 <body class="bg-color">
     <div class="container">
-
-      <%- include('./search'); %>
-
+      <div class="mx-auto w-50">
+        <div class="wrap">
+          <div class="logo center">
+            <a href="/"><img src="/assets/caml-logo2.png" width="100%" height="100%"> </a>
+          </div>
+        </div>
+          <%- include('./search', { searchTerm: ""}); %>
+      </div>
       <%- include('./footer'); %>
     </div>
     <%- include('./scripts'); %>

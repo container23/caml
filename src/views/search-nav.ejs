@@ -1,0 +1,31 @@
+<div>
+    <nav class="navbar navbar-light search-nav-container">
+        <div class="container-fluid">
+            <form class="container-fluid">
+                <div class="input-group row">
+                    <a class="navbar-brand col-2 d-flex text-white" href="/">
+                        <img src="/assets/caml-logo-simplec-nobg.png" alt="logo" width="30" height="30"
+                            class="d-inline-block align-text-top search-nav-logo">
+                            <span>AML</span>
+                    </a>
+                    <input type="text" class="form-control col-8"
+                        placeholder="Search crypto addresses, names, businesses and more.." name="term"
+                        value="<%= searchTerm %>" aria-label="Username" aria-describedby="basic-addon1" required>
+                    <div class="col-2">
+                        <i class="search-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                        </i>
+                        <input type=submit value="Search" class="search-btn" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+    <div class="search-agreement-txt text-center">
+        <p>By using this search you accept and agree with our <a href="/terms">Terms of Service.</a></p>
+    </div>
+</div>

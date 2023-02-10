@@ -1,43 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./header', {route:"/amlresults", title: "AML Check Results", gtmId: gtmId}) %>
-  <body class="bg-color">
-    <div class="container">
-    <%- include('./search-mini'); %>
+<%- include('./header', {route:"/amlresults", title: "AML Check Results" , gtmId: gtmId}) %>
 
-    <div class="container results-container">
-      <p>
-        <b>Search Term:</b> <%= data.searchTerm %> |
-        <b>Found <%= data.totalMatches %> matches </b> |
-        <b class="text-danger">Found Match:</b> <%= data.foundMatch %> |
-        <b>Status:</b> <%= data.status.toUpperCase() %> |
-        <b>Source List:</b>
-        <a href="https://www.treasury.gov/ofac/downloads/sdnlist.txt"
-          rel="noopener noreferrer"
-          target="_blank" >sndlist.txt</a> updated <%= data.sourceUpdatedAt %> 
-        <% if (data.foundMatch && data.matches.length > 0) { %>
-      <hr />
-    </div>
-    <br>
-    <div class="results-container">
-      <ul class="results-list">
-        <% data.matches.forEach((m) => { %>
-        <li>
+  <body class="bg-color">
+    <%- include('./search-nav', {searchTerm: data.searchTerm}); %>
+      <div class="container root-results-container">
+        <div class="container results-container">
           <p>
-            <span class="warning-icon">⚠</span> Matches on paragraph from line
-            <%= m.blockStart %> to <%= m.blockEnd %>:
-            <% m.matchedLines.forEach((ml) => { %>
-              <br>
-              <b>Line # <%= ml.lineNum %></b>: <%= ml.lineText %>
-            <% }) %>
+            <b>Search Term:</b>
+            <%= data.searchTerm %> |
+            <b>Status:</b> <%= data.status.toUpperCase() %> |
+            <b>Source List:</b> <a href="https://www.treasury.gov/ofac/downloads/sdnlist.txt" rel="noopener noreferrer"
+                    target="_blank">sndlist.txt</a> (updated <%= data.sourceUpdatedAt %>)
           </p>
-          <br>
-        </li>
-        <% }) %>
-      </ul>
-      <% } %>
-    </div>
-  </div>
-  <%- include('./footer'); %>
-</body>
+        </div>
+        <h4> Found <%= data.matches.length %> Matches </h4>
+        <% if (data.foundMatch && data.matches.length> 0) { %>
+          <div class="results-container">
+            <ol class="list-group list-group-numbered results-list">
+              <% data.matches.forEach((m)=> { %>
+              <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold text-start"> <span class="warning-icon">⚠</span> Matches on paragraph from line
+                    <%= m.blockStart %> to <%= m.blockEnd %>:</div>
+                  <ul>
+                    <% m.matchedLines.forEach((ml)=> { %>
+                    <li class="text-start"><b>Line #<%= ml.lineNum %></b>: <%= ml.lineText %></li>
+                    <% }) %>
+                  </ul>
+                </div>
+                <span class="badge bg-secondary rounded-pill"><%= m.matchedLines.length %></span>
+              </li>
+              <% }) %>
+            </ol>
+          </div>
+          <% } %>
+      </div>
+      <%- include('./footer'); %>
+  </body>
+
 </html>
