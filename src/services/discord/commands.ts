@@ -2,8 +2,7 @@
  * SLASH COMMANDS DEFINITIONS
  */
 
-export const MIN_INPUT_LENGTH = 2;
-export const MAX_INPUT_LENGTH = 80;
+import { MAX_SEARCH_INPUT_LENGTH, MIN_SEARCH_INPUT_LENGTH } from '../search/types';
 
 // Simple test "health check" command
 export const TEST_COMMAND: Command = {
@@ -21,8 +20,8 @@ export const SIMPLE_CHECK_COMMAND: Command = {
       type: 3,
       name: 'value',
       description: 'Enter value to check',
-      min_length: MIN_INPUT_LENGTH,
-      max_length: MAX_INPUT_LENGTH,
+      min_length: MIN_SEARCH_INPUT_LENGTH,
+      max_length: MAX_SEARCH_INPUT_LENGTH,
       required: true
     },
   ],
@@ -37,8 +36,8 @@ export const VERBOSE_CHECK_COMMAND: Command = {
       type: 3,
       name: 'value',
       description: 'Enter value to check',
-      min_length: MIN_INPUT_LENGTH,
-      max_length: MAX_INPUT_LENGTH,
+      min_length: MIN_SEARCH_INPUT_LENGTH,
+      max_length: MAX_SEARCH_INPUT_LENGTH,
       required: true
     },
   ],

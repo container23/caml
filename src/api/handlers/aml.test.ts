@@ -5,7 +5,12 @@ jest.mock('../../services/search/aml', () => ({
 
 import { Request, Response, mockReqRes } from '../utils';
 import { handleAMLSearch } from './aml';
-import { AMLSearchResponse, AML_STATUS } from '../../services/search/types';
+import {
+  AMLSearchResponse,
+  AML_STATUS,
+  MAX_SEARCH_INPUT_LENGTH,
+  MIN_SEARCH_INPUT_LENGTH,
+} from '../../services/search/types';
 
 describe('AML Search Handler', () => {
   const mockAMLSearchRes: AMLSearchResponse = {
@@ -23,9 +28,33 @@ describe('AML Search Handler', () => {
     mockedSearchAMLFile.mockRestore();
   });
 
-  test('sends 404 when missing search term', async () => {
+  test('sends 400 when missing search term', async () => {
     const mockRes = { json: jest.fn() };
     const { req, res } = mockReqRes(null, mockRes);
+
+    await handleAMLSearch(req as Request, res as Response);
+
+    expect(mockRes.json.mock.calls[0][0].status).toEqual(400);
+  });
+
+  test('sends 400 when search term is < min length', async () => {
+    const mockReq = {
+      query: { term: 't' },
+    };
+    const mockRes = { json: jest.fn() };
+    const { req, res } = mockReqRes(mockReq, mockRes);
+
+    await handleAMLSearch(req as Request, res as Response);
+
+    expect(mockRes.json.mock.calls[0][0].status).toEqual(400);
+  });
+
+  test('sends 400 when search term is > max length', async () => {
+    const mockReq = {
+      query: { term: 't'.repeat(MAX_SEARCH_INPUT_LENGTH + 1) },
+    };
+    const mockRes = { json: jest.fn() };
+    const { req, res } = mockReqRes(mockReq, mockRes);
 
     await handleAMLSearch(req as Request, res as Response);
 
@@ -75,6 +104,10 @@ describe('AML Search Handler', () => {
     await handleAMLSearch(req as Request, res as Response);
 
     expect(mockRes.render.mock.calls[0][0]).toEqual('aml-results');
-    expect(mockRes.render.mock.calls[0][1]).toEqual({ data: mockAMLSearchRes });
+    expect(mockRes.render.mock.calls[0][1]).toEqual({
+      minSearchLength: MIN_SEARCH_INPUT_LENGTH,
+      maxSearchLength: MAX_SEARCH_INPUT_LENGTH,
+      data: mockAMLSearchRes
+    });
   });
 });

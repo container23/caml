@@ -1,13 +1,18 @@
 import { InteractionType, InteractionResponseType } from 'discord-interactions';
 import {
-  MAX_INPUT_LENGTH,
-  MIN_INPUT_LENGTH,
   TEST_COMMAND,
   SIMPLE_CHECK_COMMAND,
   VERBOSE_CHECK_COMMAND,
 } from '../../services/discord/commands';
 import { getRandomEmoji } from '../../utils';
-import { searchAMLFile } from '../../services/search/aml';
+import {
+  searchAMLFile,
+ 
+} from '../../services/search/aml';
+import {
+  MAX_SEARCH_INPUT_LENGTH,
+  MIN_SEARCH_INPUT_LENGTH,
+} from '../../services/search/types';
 import { Handler, API_BASE_URL } from '../utils/index';
 import { AMLSearchResponse } from '../../services/search/types';
 import { logger } from '../../utils/logger';
@@ -92,13 +97,13 @@ const handleVerificationChecksCmds: Handler = async (req, res) => {
   // verify user submitted valid text input
   if (
     !inputValue ||
-    inputValue.length < MIN_INPUT_LENGTH ||
-    inputValue.length > MAX_INPUT_LENGTH
+    inputValue.length < MIN_SEARCH_INPUT_LENGTH ||
+    inputValue.length > MAX_SEARCH_INPUT_LENGTH
   ) {
     return res.json({
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: `invalid input value. Input must be between ${MIN_INPUT_LENGTH} and ${MAX_INPUT_LENGTH} characters. Please try again.`,
+        content: `invalid input value. Input must be between ${MIN_SEARCH_INPUT_LENGTH} and ${MAX_SEARCH_INPUT_LENGTH} characters. Please try again.`,
       },
     });
   }

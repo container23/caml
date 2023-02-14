@@ -8,6 +8,9 @@ export const AML_STATUS_MESSAGES = {
   [AML_STATUS.BANNED]: '🚫 (**BANNED**)',
 };
 
+export const MIN_SEARCH_INPUT_LENGTH = 2;
+export const MAX_SEARCH_INPUT_LENGTH = 80;
+
 export type LineMatch = {
   lineNum: number;
   lineText: string;
