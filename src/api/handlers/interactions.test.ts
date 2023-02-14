@@ -5,8 +5,6 @@ jest.mock('../../services/search/aml', () => ({
 
 import { InteractionResponseType, InteractionType } from 'discord-interactions';
 import {
-  MAX_INPUT_LENGTH,
-  MIN_INPUT_LENGTH,
   SIMPLE_CHECK_COMMAND,
   TEST_COMMAND,
   VERBOSE_CHECK_COMMAND,
@@ -15,6 +13,8 @@ import {
   AMLSearchResponse,
   AML_STATUS,
   AML_STATUS_MESSAGES,
+  MAX_SEARCH_INPUT_LENGTH,
+  MIN_SEARCH_INPUT_LENGTH,
 } from '../../services/search/types';
 import { Request, Response } from '../utils';
 import {
@@ -220,7 +220,7 @@ describe('Interactions Handler Tests', () => {
         expect(res.data.content.includes('invalid input value')).toBeTruthy();
       });
 
-      test(`CMD (${SIMPLE_CHECK_COMMAND.name}) returns invalid response when input term < ${MIN_INPUT_LENGTH} characters`, async () => {
+      test(`CMD (${SIMPLE_CHECK_COMMAND.name}) returns invalid response when input term < ${MIN_SEARCH_INPUT_LENGTH} characters`, async () => {
         const mockRes = { json: jest.fn() };
         const mockReq = {
           body: {
@@ -245,14 +245,14 @@ describe('Interactions Handler Tests', () => {
         expect(res.data.content.includes('invalid input value')).toBeTruthy();
       });
 
-      test(`CMD (${SIMPLE_CHECK_COMMAND.name}) returns invalid response when input term > ${MAX_INPUT_LENGTH} characters`, async () => {
+      test(`CMD (${SIMPLE_CHECK_COMMAND.name}) returns invalid response when input term > ${MAX_SEARCH_INPUT_LENGTH} characters`, async () => {
         const mockRes = { json: jest.fn() };
         const mockReq = {
           body: {
             type: InteractionType.APPLICATION_COMMAND,
             data: {
               name: SIMPLE_CHECK_COMMAND.name,
-              options: [{ value: 't'.repeat(MAX_INPUT_LENGTH + 1) }],
+              options: [{ value: 't'.repeat(MAX_SEARCH_INPUT_LENGTH + 1) }],
             },
             member: { user: { id: 'test' } },
           },

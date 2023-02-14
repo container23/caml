@@ -1,7 +1,10 @@
 <div class="form text-center">
-    <form method=GET action="/aml/search?term"> 
-        <input id="search-input" type=text placeholder="Search crypto addresses, names, businesses and more.." 
-            name="term" value="<%= searchTerm %>" class="form-control" aria-describedby="searchHelpBlock" required>
+    <form method=GET action="/aml/search?term">
+        <input id="search-input" type=text placeholder="Search crypto addresses, names, businesses and more.."
+            name="term" value="<%= searchTerm %>"
+            title="enter a value from <%=minSearchLength%> to <%=maxSearchLength%> characters"
+            pattern=".{<%=minSearchLength%>,<%=maxSearchLength%>}" class="form-control"
+            aria-describedby="searchHelpBlock" required>
         <div id="searchHelpBlock" class="form-text">
             A simple verification search against the US FINCEN AML List (soon many more)
         </div>
