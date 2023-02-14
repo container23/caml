@@ -156,6 +156,18 @@ $theme-colors: (
     border-radius: unset;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.results-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.results-list {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
 .results-list > li {
     background-color: #dcdcdc;
 }

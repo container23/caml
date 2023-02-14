@@ -9,7 +9,7 @@
             <a href="/"><img src="/assets/caml-logo2.png" width="100%" height="100%"> </a>
           </div>
         </div>
-          <%- include('./search', { searchTerm: ""}); %>
+          <%- include('./search', { searchTerm: "", minSearchLength, maxSearchLength }); %>
       </div>
       <%- include('./footer'); %>
     </div>
