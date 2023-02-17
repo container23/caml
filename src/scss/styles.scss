@@ -70,6 +70,9 @@ $theme-colors: (
     width: 70%;
     padding: 1em;
 }
+.logo img{
+    max-width: 25em;
+}
 .center{
     display: block;
     margin-left: auto;
@@ -77,6 +80,10 @@ $theme-colors: (
 }
 .container{
     text-align: center;
+}
+.home-footer-pad{
+    margin-top:4em;
+    margin-bottom: 1em;
 }
 
 // Search Section
@@ -90,9 +97,11 @@ $theme-colors: (
 
 
 .form {
+    margin: auto;
     background-color:#eee;
     border: 1px #0d1b2a;
     padding: 1em;
+    max-width: 69em;
 }
 
 .search-nav-container {
@@ -100,11 +109,8 @@ $theme-colors: (
 }
 
 .search-btn-container {
-  margin-top: 20px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 0;
 }
 
 .search-agreement-txt {
