@@ -82,8 +82,15 @@ $theme-colors: (
     text-align: center;
 }
 .home-footer-pad{
-    margin-top:4em;
+    margin-top:2em;
     margin-bottom: 1em;
+}
+.vertical{
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+
+    display: flex;
+    align-items: center;
 }
 
 // Search Section
@@ -100,7 +107,7 @@ $theme-colors: (
     margin: auto;
     background-color:#eee;
     border: 1px #0d1b2a;
-    padding: 1em;
+    padding: 1.5em;
     max-width: 69em;
 }
 
@@ -109,8 +116,7 @@ $theme-colors: (
 }
 
 .search-btn-container {
-  display: flex;
-  align-items: center;
+    text-align: center;
 }
 
 .search-agreement-txt {

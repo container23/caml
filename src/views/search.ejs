@@ -1,14 +1,14 @@
 <div class="form text-center">
     <form method=GET action="/aml/search?term">
         <div class="row">
-            <div class="col-xs-12 col-md-9">
+            <div class="col-12 col-md-9 p-0">
                 <input id="search-input" type=text placeholder="Search crypto addresses, names, businesses and more.."
                 name="term" value="<%= searchTerm %>"
                 title="enter a value from <%=minSearchLength%> to <%=maxSearchLength%> characters"
                 pattern=".{<%=minSearchLength%>,<%=maxSearchLength%>}" class="form-control"
                 aria-describedby="searchHelpBlock" required>
             </div>
-            <div class="float-end col-xs-4 col-md-3">
+            <div class="col-12 col-md-3 p-2 p-md-0">
                 <i class="search-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-search" viewBox="0 0 16 16">

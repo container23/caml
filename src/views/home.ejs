@@ -2,11 +2,12 @@
 <html lang="en">
 <%- include('./header', {route:"/home", title: "CAML Home Page", gtmId: gtmId}) %>
 <body class="bg-color">
+  <div class="d-flex align-items-center min-vh-100">
     <div class="container">
-      <div class="mx-auto wl-75">
+      <div class="mx-auto col-lg-7 col-md-10 col-sm-12">
         <div class="wrap">
           <div class="logo center">
-            <a href="/"><img src="/assets/caml-logo2.png" width="100%" height="100%"> </a>
+            <a href="/"><img src="/assets/caml-logo.png" width="100%" height="100%"> </a>
           </div>
         </div>
           <%- include('./search', { searchTerm: "", minSearchLength, maxSearchLength }); %>
@@ -14,5 +15,6 @@
       <div class="home-footer-pad"></div>
       <%- include('./footer'); %>
     </div>
+  </div>
 </body>
 </html>
