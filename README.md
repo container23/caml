@@ -83,5 +83,5 @@ For more information about AML or KYC services, please contact us at [dev@contai
 
 ## Disclaimers
 
-Read our [license terms](.license.txt) for usage rights.
+Read our [license terms](./license.txt) for usage rights.
 
