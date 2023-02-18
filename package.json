@@ -1,8 +1,8 @@
 {
-  "name": "amlkyc-bot",
+  "name": "caml",
   "version": "1.0.0",
-  "description": "A Discord bot for performing users verifications (AML, KYC) checks",
-  "main": "app.js",
+  "description": "A simple verification service and Discord bot to search against the US FINCEN AML List. ",
+  "main": "./dist/app.js",
   "scripts": {
     "build": "./node_modules/.bin/tsc && npm run scss && npm run cp-assets ",
     "start": "node ./dist/app.js",
@@ -19,7 +19,7 @@
     "cp-assets": "cp -r src/views dist"
   },
   "author": "Yeramin, Bogdan",
-  "license": "MIT",
+  "license": "CC-BY-4.0",
   "dependencies": {
     "body-parser": "^1.20.1",
     "discord-interactions": "^3.2.0",

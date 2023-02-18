@@ -21,10 +21,24 @@ Below is a basic overview of the project structure:
 
 For discord bot documentation follow instructions [here](./docs/discord-bot.md).
 
+### Prerequisites
+
+- Requires [NodeJS](https://nodejs.org/en/) >= 16
 
 ### Run the app locally
 
-After your credentials are added, go ahead and run the app:
+First clone the project:
+```
+git clone https://github.com/container23/caml.git
+```
+
+Then navigate to its directory and install dependencies:
+```
+cd caml
+npm install
+```
+
+After dependencies are installed, go ahead and run the app:
 
 ```
 make start
