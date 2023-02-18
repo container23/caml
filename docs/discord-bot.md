@@ -34,14 +34,15 @@ Under Bot section
 
 First clone the project:
 ```
-git clone https://github.com/container23/kycaml-bot.git
+git clone https://github.com/container23/caml.git
 ```
 
 Then navigate to its directory and install dependencies:
 ```
-cd discord-bot-poc
+cd caml
 npm install
 ```
+
 ### Get app credentials
 
 Fetch the credentials from your app's settings and add them to a `.env` file (see `env.sample` for an example). You'll need your app ID (`APP_ID`), server ID (`GUILD_ID`), bot token (`DISCORD_TOKEN`), and public key (`PUBLIC_KEY`).
