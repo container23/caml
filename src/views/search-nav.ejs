@@ -3,17 +3,21 @@
         <div class="container-fluid">
             <form class="container-fluid">
                 <div class="input-group row">
-                    <a class="navbar-brand col-2 d-flex text-white" href="/">
-                        <img src="/assets/caml-logo-simplec-nobg.png" alt="logo" width="30" height="30"
-                            class="d-inline-block align-text-top search-nav-logo">
-                        <span>AML</span>
-                    </a>
-                    <input type="text" class="form-control col-8"
+                    <div class="col-3 p-0">
+                        <a class="navbar-brand col-2 d-flex text-white" href="/">
+                            <img src="/assets/caml-logo-c.png" alt="logo" width="30" height="30"
+                                class="d-inline-block align-text-top search-nav-logo">
+                            <span>AML</span>
+                        </a>
+                    </div>
+                    <div class="col-5 p-0">
+                    <input type="text" class="form-control"
                         title="enter a value from <%=minSearchLength%> to <%=maxSearchLength%> characters"
                         pattern=".{<%=minSearchLength%>,<%=maxSearchLength%>}"
                         placeholder="Search crypto addresses, names, businesses and more.." name="term"
                         value="<%= searchTerm %>" aria-label="Username" aria-describedby="basic-addon1" required>
-                    <div class="col-2">
+                    </div>
+                    <div class="col-4 p-0">
                         <i class="search-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-search" viewBox="0 0 16 16">
