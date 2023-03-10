@@ -109,7 +109,7 @@ const buildResultsOutput = ({
   totalMatches?: number;
 }) => {
   const foundMatch = totalMatches > 0;
-  const status = foundMatch ? AML_STATUS.BANNED : AML_STATUS.SAFE;
+  const status = foundMatch ? AML_STATUS.MATCH : AML_STATUS.NO_MATCH;
   const statusMsg = AML_STATUS_MESSAGES[status];
   return {
     searchTerm,

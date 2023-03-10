@@ -76,7 +76,7 @@ describe('Interactions Handler Tests', () => {
       const mockAMLSearchRes: AMLSearchResponse = {
         searchTerm: 'test',
         foundMatch: true,
-        status: AML_STATUS.SAFE,
+        status: AML_STATUS.NO_MATCH,
         statusMsg: 'Fake Test Status' as AML_STATUS,
         totalMatches: 1,
         matches: [],
@@ -384,8 +384,8 @@ describe('Interactions Handler Tests', () => {
       ];
       const input: AMLSearchResponse = {
         searchTerm: 'test',
-        status: AML_STATUS.SAFE,
-        statusMsg: AML_STATUS_MESSAGES[AML_STATUS.SAFE],
+        status: AML_STATUS.NO_MATCH,
+        statusMsg: AML_STATUS_MESSAGES[AML_STATUS.NO_MATCH],
         foundMatch: true,
         sourceUpdatedAt: '12/28/22',
         totalMatches: 3,

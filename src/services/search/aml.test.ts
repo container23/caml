@@ -117,7 +117,7 @@ describe('AML File Search', () => {
         expect(re.foundMatch).toBe(!!t.matched);
         expect(re.sourceUpdatedAt).toBe('11/14/2022');
         expect(re.totalMatches).toBe(t.totalMatches || 0);
-        expect(re.status).toBe(t.matched ? AML_STATUS.BANNED : AML_STATUS.SAFE);
+        expect(re.status).toBe(t.matched ? AML_STATUS.MATCH : AML_STATUS.NO_MATCH);
         expect(re.statusMsg).toBe(AML_STATUS_MESSAGES[re.status]);
         if (t.matches) {
           expect(re.matches).toEqual(t.matches);

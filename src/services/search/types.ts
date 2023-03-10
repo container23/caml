@@ -1,11 +1,11 @@
 export enum AML_STATUS {
-   SAFE = 'safe',
-   BANNED = 'banned',
+   MATCH = 'match',
+   NO_MATCH = 'no_match',
 }
 
 export const AML_STATUS_MESSAGES = {
-  [AML_STATUS.SAFE]: '✅ (**SAFE**)',
-  [AML_STATUS.BANNED]: '🚫 (**BANNED**)',
+  [AML_STATUS.MATCH]: '✅ (**MATCH**)',
+  [AML_STATUS.NO_MATCH]: '🚫 (**NO MATCH**)',
 };
 
 export const MIN_SEARCH_INPUT_LENGTH = 2;

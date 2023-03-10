@@ -16,7 +16,7 @@ describe('AML Search Handler', () => {
   const mockAMLSearchRes: AMLSearchResponse = {
     searchTerm: 'test',
     foundMatch: true,
-    status: AML_STATUS.SAFE,
+    status: AML_STATUS.NO_MATCH,
     statusMsg: 'Fake Test Status' as AML_STATUS,
     totalMatches: 1,
     matches: [],
