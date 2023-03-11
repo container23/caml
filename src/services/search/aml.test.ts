@@ -82,7 +82,7 @@ Passport T00043812 (Belarus) issued 16 Sep 2015; National ID No.
             blockStart: 41,
             blockEnd: 41,
             totalMatches: 1,
-            blockText: `Bogdan is also a common name on the list :). Right bogdan!`,
+            blockText: 'Bogdan is also a common name on the list :). Right bogdan!',
             matchedLines: [
               {
                 lineNum: 41,
