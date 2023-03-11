@@ -43,4 +43,4 @@ jobs:
             git checkout ${{ github.ref_name }} && \
             git pull && \ 
             make release && \
-            pm2 restart --name=kycamlbot dist/app.js -i 2
+            pm2 restart --name=caml dist/app.js -i 2
