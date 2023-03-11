@@ -158,13 +158,13 @@ export const buildVerboseDetailsOutput = (
       if (totalLinesAdded > maxOutputLines) {
         break;
       }
-      output += `\n \t ⚠ Matches on paragraph from line ${m.blockStart} to ${m.blockEnd}:`;
+      output += `\n \t - Matches on entry #${m.blockNum} (line ${m.blockStart} to ${m.blockEnd}):`;
       // add lines
       for (const ml of m.matchedLines) {
         if (totalLinesAdded > maxOutputLines) {
           break;
         }
-        output += `\n \t \t - ${totalLinesAdded}) **Line # ${ml.lineNum}**: ${ml.lineText}`;
+        output += `\n \t \t - ${totalLinesAdded}) **Line # ${ml.lineNum}**`;
         totalLinesAdded++;
       }
     }

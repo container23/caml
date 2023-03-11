@@ -1,6 +1,6 @@
 export enum AML_STATUS {
    MATCH = 'match',
-   NO_MATCH = 'no_match',
+   NO_MATCH = 'no match',
 }
 
 export const AML_STATUS_MESSAGES = {
@@ -9,16 +9,18 @@ export const AML_STATUS_MESSAGES = {
 };
 
 export const MIN_SEARCH_INPUT_LENGTH = 2;
-export const MAX_SEARCH_INPUT_LENGTH = 80;
+export const MAX_SEARCH_INPUT_LENGTH = 128;
 
 export type LineMatch = {
   lineNum: number;
-  lineText: string;
+  lineText?: string;
 };
 
 export type AMLSearchMatch = {
+  blockNum: number;
   blockStart: number;
   blockEnd: number;
+  blockText: string;
   totalMatches: number;
   matchedLines: LineMatch[];
 };

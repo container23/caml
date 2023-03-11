@@ -21,15 +21,11 @@
               <% data.matches.forEach((m)=> { %>
               <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">
-                  <div class="fw-bold text-start"> <span class="warning-icon">⚠</span> Matches on paragraph from line
-                    <%= m.blockStart %> to <%= m.blockEnd %>:</div>
-                  <ul>
-                    <% m.matchedLines.forEach((ml)=> { %>
-                    <li class="text-start"><b>Line #<%= ml.lineNum %></b>: <%= ml.lineText %></li>
-                    <% }) %>
-                  </ul>
+                  <div class="fw-bold text-start">Matches on entry #<%= m.blockNum %> (line
+                    <%= m.blockStart %> to <%= m.blockEnd %>):</div>
+                    <p><%= m.blockText %></p>
                 </div>
-                <span class="badge bg-secondary rounded-pill"><%= m.matchedLines.length %></span>
+                <span class="badge bg-secondary rounded-pill"><%= m.totalMatches %></span>
               </li>
               <% }) %>
             </ol>
