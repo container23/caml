@@ -8,7 +8,7 @@ import readline from 'readline';
  */
 export const buildSearchRegEx = (searchTxt: string) => {
   const searchFlags = 'gmi'; // global, multiline, insensitive
-  const searchQuery = `\\b${searchTxt}\\b`; // search within boundary
+  const searchQuery = `\\b${searchTxt}`; // search with starting boundary
   const regEx = new RegExp(searchQuery, searchFlags);
   return regEx;
 };

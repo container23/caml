@@ -38,6 +38,8 @@ export const searchAMLFile = async (
     lineNum = 0,
     blockStartIdx = 1,
     blockEndIdx = -1,
+    blockText = '',
+    blockNum = 1,
     totalMatches = 0,
     lastProcessedLine = '';
 
@@ -52,8 +54,10 @@ export const searchAMLFile = async (
       if (currentBlockMatches.length) {
         totalMatches += currentBlockMatches.length;
         matches.push({
+          blockNum,
           blockStart: blockStartIdx,
           blockEnd: blockEndIdx,
+          blockText: blockText,
           totalMatches: currentBlockMatches.length,
           matchedLines: currentBlockMatches,
         });
@@ -61,13 +65,17 @@ export const searchAMLFile = async (
       // reset block fields
       blockStartIdx = lineNum + 1;
       currentBlockMatches = [];
+      blockText = '';
+      blockNum++;
       // check if current line matches input text
-    } else if (sanitizeStr(line).search(searchRegExp) >= 0) {
-      // add the matches to the current block
-      currentBlockMatches.push({
-        lineNum,
-        lineText: line,
-      });
+    } else {
+      blockText += line;
+      if (sanitizeStr(line).search(searchRegExp) >= 0) {
+        // add the matches to the current block
+        currentBlockMatches.push({
+          lineNum
+        });
+      }
     }
   };
 
@@ -109,7 +117,7 @@ const buildResultsOutput = ({
   totalMatches?: number;
 }) => {
   const foundMatch = totalMatches > 0;
-  const status = foundMatch ? AML_STATUS.BANNED : AML_STATUS.SAFE;
+  const status = foundMatch ? AML_STATUS.MATCH : AML_STATUS.NO_MATCH;
   const statusMsg = AML_STATUS_MESSAGES[status];
   return {
     searchTerm,
