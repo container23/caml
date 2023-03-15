@@ -45,7 +45,7 @@ docker-run:
 	@echo "Starting container..."
 	@docker run --rm --name=kycaml-service --env-file=./.env -p 8080:8080 kycaml-service:latest
 
-release: clean
+build-test: clean
 	@echo "Building release: ${COMMIT_HASH}"
 	@echo "Installing dependencies"
 	@npm install
@@ -53,6 +53,13 @@ release: clean
 	@npm run lint
 	@echo "Running unit tests..."
 	@npm run test
+	@echo "Building app..."
+	@npm run build
+
+release: clean
+	@echo "Building release: ${COMMIT_HASH}"
+	@echo "Installing dependencies"
+	@npm install
 	@echo "Building app..."
 	@npm run build
 	@echo "Cleaning dev dependencies..."
