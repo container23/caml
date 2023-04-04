@@ -2,7 +2,8 @@ import { json, Express as Server, static as ServeStatic } from 'express';
 import { verifyDiscordRequest } from '../../services/discord/index';
 import { requestLogger } from './logger';
 import { trackAnalytics } from './analytics';
-import { errorHandler }  from './errors';
+import { errorHandler } from './errors';
+import cors from 'cors';
 
 export const setupMiddlewares = (app: Server) => {
   // static assets
@@ -15,6 +16,8 @@ export const setupMiddlewares = (app: Server) => {
   app.use(json(buildJSONParserOpts()));
   // analytics metrics tracking
   app.use(trackAnalytics());
+  // CORS
+  app.use(cors());
 };
 
 export const setupErrorHandlers = (app: Server) => {
