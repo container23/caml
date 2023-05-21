@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./header', {route:"/metamask", title: "Metamask Snap Integration" , gtmId: gtmId}) %>
+    <script src="https://unpkg.com/@metamask/detect-provider/dist/detect-provider.min.js"></script>
+
+    <body class="bg-color">
+        <div class="d-flex align-items-center min-vh-100">
+            <div class="container">
+                <div class="search mx-auto w-80">
+                    <div class="wrap">
+                        <div class="logo center">
+                            <a href="/"><IMG SRC="/assets/caml-logo.png" width="100%" height="100%"> </a>
+                        </div>
+                    </div>
+                    <div class="form">
+                        <h2>MetaMask Integration</h2>
+                        <p class="text-primary primary">
+                            Integrate CAML to MetaMask to quickly and easily execute AML checks on your cryptocurrency
+                            transactions.
+                        </p>
+                        <p>CAML interfaces with your MetaMask wallet in a secure and segregated manner via the <a
+                                href="https://metamask.io/snaps/">MetaMask Snaps</a> environment. We just ask for the
+                            bare minimum of permissions needed to carry out the AML check. </p>
+
+                        <p>Our plugin provides you AML insights and warnings so you can conduct safer crypto
+                            transactions. We don't record any of
+                            your transaction history; instead, we just check the recipient address of each transaction
+                            against our AML lists.</p>
+                        <div id="alertContainer" class="alert alert-warning text-center d-none" role="alert">
+                        </div>
+                        <h2>
+                            <a id="metamaskSnapIntegrateBtn" class="btn" rel="noopener noreferrer"
+                                target="_blank" href="#">Connect CAML Snap
+                                <span>➪</span>
+                            </a>
+                        </h2>
+                    </div>
+                </div>
+                <script defer src="/assets/metamask.js"></script>
+                <%- include('./footer'); %>
+            </div>
+        </div>
+    </body>
+
+</html>

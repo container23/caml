@@ -5,9 +5,9 @@ import {
   handlePrivacy,
   handleBot,
   handleAbout,
-  handleTerms
+  handleTerms,
+  handleMetamaskPage,
 } from './handlers';
-import {  } from './handlers/bot';
 import { Server } from './utils/index';
 
 export const setupRoutes = (app: Server) => {
@@ -30,6 +30,11 @@ export const setupRoutes = (app: Server) => {
    * Discord Bot Interactions requests
    */
   app.post('/discord/interactions', handleDiscordInteractions);
+
+  /**
+   * Metamask Integration
+   */
+  app.get('/metamask', handleMetamaskPage);
 
   /**
    * Info pages
