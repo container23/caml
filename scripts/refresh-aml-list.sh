@@ -11,7 +11,7 @@ OUTPUT_PATH=$OUTPUT_DIR/$AML_FILE_NAME
 TMP_OUTPUT_DIR=/tmp
 TREASURY_HOST=treasury.gov
 AML_FILE_SOURCE=https://www.$TREASURY_HOST/ofac/downloads/sdnlist.txt
-CHECKSUMS_FILE_SOURCE=https://home.$TREASURY_HOST/policy-issues/financial-sanctions/specially-designated-nationals-list-sdn-list/hash-values-for-ofac-sanctions-list-files
+CHECKSUMS_FILE_SOURCE=https://ofac.$TREASURY_HOST/specially-designated-nationals-list-sdn-list/hash-values-for-ofac-sanctions-list-files
 CHECKSUMS_FILE_NAME=sndlist_checksums.html
 
 ## ensure the download paths dirs are available
@@ -25,7 +25,7 @@ curl -s -o $TMP_OUTPUT_DIR/$AML_FILE_NAME $AML_FILE_SOURCE
 echo "Verifying downloaded AML file checksum..."
 curl -s -o $TMP_OUTPUT_DIR/$CHECKSUMS_FILE_NAME $CHECKSUMS_FILE_SOURCE
 ## extract the sha256 hash from the file
-EXPECTED_CHECKSUM=$(grep -Po "sdnlist\.txt\s{1,}\x{00A0}\s\x{00A0}SHA-256:\s([a-zA-Z0-9]{64})" $TMP_OUTPUT_DIR/$CHECKSUMS_FILE_NAME | grep -Eo "([a-zA-Z0-9]{64})")
+EXPECTED_CHECKSUM=$(grep -oP "sdnlist\.txt.*?SHA-256:\s+\K[0-9a-fA-F]+" $TMP_OUTPUT_DIR/$CHECKSUMS_FILE_NAME)
 DOWNLOADED_CHECKSUM=$(sha256sum $TMP_OUTPUT_DIR/$AML_FILE_NAME | grep -Eo "([a-zA-Z0-9]{64})")
 
 ## Verify downloaded file matches expected
