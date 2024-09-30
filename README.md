@@ -65,6 +65,14 @@ make docker-run
 make test
 ```
 
+### Deploy to Prod
+* use the nginx/default config ( create a sym link in /etc/nginx/sites-enabled )
+
+* serve with pm2
+``` 
+pm2 start caml 
+```
+
 ## AML List Checks
 
 ### Data Refresh
