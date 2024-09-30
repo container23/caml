@@ -70,7 +70,7 @@ make test
 
 * serve with pm2
 ``` 
-pm2 start caml 
+pm2 start --name=caml dist/app.js -i 2
 ```
 
 ## AML List Checks
