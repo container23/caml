@@ -37,6 +37,8 @@ jobs:
           # export NVM_DIR="$HOME/.nvm"
           # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           script: |
+            eval `ssh-agent` &&\
+            ssh-add ~/.ssh/ci_rsa &&\
             cd ${{ github.repository }} && \
             pwd && \
             git checkout ${{ github.ref_name }} && \
