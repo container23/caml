@@ -34,9 +34,9 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           port: 22
           # workaround for nvm https://github.com/appleboy/ssh-action/issues/70
-          # export NVM_DIR="$HOME/.nvm"
-          # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           script: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             eval `ssh-agent` &&\
             ssh-add ~/.ssh/ci_rsa &&\
             cd ${{ github.repository }} && \
